@@ -6,10 +6,24 @@
     <title>@yield('title', 'JerukPin - Jeruk Segar Berkualitas')</title>
     
     @if(app()->environment('local'))
+        {{-- Local development: use Vite --}}
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <script src="//unpkg.com/alpinejs" defer></script>
+        {{-- Production: use Tailwind CDN (faster deployment, no build needed) --}}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#10b981',
+                            secondary: '#3b82f6',
+                        }
+                    }
+                }
+            }
+        </script>
+        @vite(['resources/js/app.js'])
     @endif
     
     <style>
