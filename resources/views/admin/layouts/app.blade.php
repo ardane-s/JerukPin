@@ -12,98 +12,163 @@
         }
         .gradient-animate {
             background-size: 200% 200%;
-            animation: gradient-shift 3s ease infinite;
+            animation: gradient-shift 5s ease infinite;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-neutral-50 to-orange-50 min-h-screen">
-    <!-- Navigation -->
-    <nav class="bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg gradient-animate">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('admin.dashboard') }}" class="text-2xl font-heading font-bold text-white flex items-center gap-2 hover:scale-105 transition-transform">
-                            <span class="text-3xl">🍊</span>
-                            <span>JerukPin Admin</span>
-                        </a>
+<body class="bg-neutral-100 font-sans antialiased">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Left Sidebar -->
+        <aside id="sidebar" class="w-64 bg-gradient-to-b from-orange-600 to-orange-700 gradient-animate text-white flex-shrink-0 flex flex-col shadow-2xl transition-all duration-300">
+            <!-- Logo -->
+            <div class="p-6 border-b border-orange-500/30">
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 group">
+                    <div class="text-4xl transform group-hover:scale-110 transition-transform">🍊</div>
+                    <div>
+                        <h1 class="text-2xl font-bold">JerukPin</h1>
+                        <p class="text-xs text-orange-200">Admin Panel</p>
                     </div>
-                    <div class="hidden sm:ml-8 sm:flex sm:space-x-1">
-                        <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('admin.dashboard') ? 'bg-white/20 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                            📊 Dashboard
-                        </a>
-                        <a href="{{ route('admin.categories.index') }}" class="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('admin.categories.*') ? 'bg-white/20 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                            📁 Kategori
-                        </a>
-                        <a href="{{ route('admin.products.index') }}" class="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('admin.products.*') ? 'bg-white/20 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                            🍊 Produk
-                        </a>
-                        <a href="{{route('admin.flash-sales.index') }}" class="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('admin.flash-sales.*') ? 'bg-white/20 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                            ⚡ Flash Sale
-                        </a>
-                        <a href="{{ route('admin.orders.index') }}" class="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('admin.orders.*') ? 'bg-white/20 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                            📦 Pesanan
-                        </a>
-                        <a href="{{ route('admin.reviews.index') }}" class="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('admin.reviews.*') ? 'bg-white/20 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                            ⭐ Review
-                        </a>
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all {{ request()->routeIs('admin.dashboard') ? 'bg-orange-800/50 shadow-lg' : 'hover:bg-orange-700/30' }}">
+                    <span class="text-2xl">📊</span>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                
+                <a href="{{ route('admin.categories.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all {{ request()->routeIs('admin.categories.*') ? 'bg-orange-800/50 shadow-lg' : 'hover:bg-orange-700/30' }}">
+                    <span class="text-2xl">📁</span>
+                    <span class="font-medium">Kategori</span>
+                </a>
+                
+                <a href="{{ route('admin.products.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all {{ request()->routeIs('admin.products.*') ? 'bg-orange-800/50 shadow-lg' : 'hover:bg-orange-700/30' }}">
+                    <span class="text-2xl">🍊</span>
+                    <span class="font-medium">Produk</span>
+                </a>
+                
+                <a href="{{ route('admin.flash-sales.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all {{ request()->routeIs('admin.flash-sales.*') ? 'bg-orange-800/50 shadow-lg' : 'hover:bg-orange-700/30' }}">
+                    <span class="text-2xl">⚡</span>
+                    <span class="font-medium">Flash Sale</span>
+                </a>
+                
+                <a href="{{ route('admin.orders.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all {{ request()->routeIs('admin.orders.*') ? 'bg-orange-800/50 shadow-lg' : 'hover:bg-orange-700/30' }}">
+                    <span class="text-2xl">📦</span>
+                    <span class="font-medium">Pesanan</span>
+                </a>
+                
+                <a href="{{ route('admin.reviews.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all {{ request()->routeIs('admin.reviews.*') ? 'bg-orange-800/50 shadow-lg' : 'hover:bg-orange-700/30' }}">
+                    <span class="text-2xl">⭐</span>
+                    <span class="font-medium">Review</span>
+                </a>
+
+                <div class="my-4 border-t border-orange-500/30"></div>
+
+                <a href="{{ route('home') }}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-700/30 transition-all">
+                    <span class="text-2xl">🏪</span>
+                    <span class="font-medium">Lihat Toko</span>
+                </a>
+            </nav>
+
+            <!-- User Profile -->
+            <div class="p-4 border-t border-orange-500/30">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-orange-600 font-bold text-lg shadow-md">
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-medium truncate">{{ auth()->user()->name }}</p>
+                        <p class="text-xs text-orange-200 truncate">{{ auth()->user()->email }}</p>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="{{ route('home') }}" target="_blank" class="text-sm text-white/80 hover:text-white transition flex items-center gap-1">
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-orange-800/50 hover:bg-orange-800 rounded-lg transition-all text-sm font-medium">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                         </svg>
-                        Lihat Toko
-                    </a>
-                    <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg">
-                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-orange-500 font-bold">
-                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                        </div>
-                        <span class="text-sm text-white font-medium">{{ auth()->user()->name }}</span>
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Header -->
+            <header class="bg-white shadow-sm border-b border-neutral-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-neutral-900">@yield('page-title', 'Dashboard')</h2>
+                        <p class="text-sm text-neutral-600">@yield('page-description', 'Kelola toko JerukPin Anda')</p>
                     </div>
-                    <form action="{{ route('logout') }}" method="POST" class="inline">
-                        @csrf
-                        <button type="submit" class="text-sm text-white/80 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition">
-                            🚪 Logout
-                        </button>
-                    </form>
+                    <button id="sidebar-toggle" class="lg:hidden p-2 rounded-lg hover:bg-neutral-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
-            </div>
+            </header>
+
+            <!-- Flash Messages -->
+            @if(session('success'))
+                <div class="mx-6 mt-4">
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 text-green-800 px-6 py-4 rounded-lg shadow-sm flex items-center gap-3">
+                        <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-medium">{{ session('success') }}</span>
+                    </div>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="mx-6 mt-4">
+                    <div class="bg-gradient-to-r from-red-50 to-rose-50 border-l-4 border-red-500 text-red-800 px-6 py-4 rounded-lg shadow-sm flex items-center gap-3">
+                        <svg class="w-6 h-6 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-medium">{{ session('error') }}</span>
+                    </div>
+                </div>
+            @endif
+
+            <!-- Content Area -->
+            <main class="flex-1 overflow-y-auto p-6">
+                @yield('content')
+            </main>
         </div>
-    </nav>
+    </div>
 
-    <!-- Flash Messages -->
-    @if(session('success'))
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-            <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 text-green-800 px-6 py-4 rounded-lg shadow-sm flex items-center gap-3">
-                <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span class="font-medium">{{ session('success') }}</span>
-            </div>
-        </div>
-    @endif
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 lg:hidden hidden"></div>
 
-    @if(session('error'))
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-            <div class="bg-gradient-to-r from-red-50 to-rose-50 border-l-4 border-red-500 text-red-800 px-6 py-4 rounded-lg shadow-sm flex items-center gap-3">
-                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span class="font-medium">{{ session('error') }}</span>
-            </div>
-        </div>
-    @endif
+    <script>
+        // Mobile sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        @yield('content')
-    </main>
+        sidebarToggle?.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        });
 
-    <!-- Footer -->
-    <footer class="mt-auto py-6 text-center text-neutral-500 text-sm">
-        <p>© 2025 JerukPin Admin Panel. Made with 🍊 and ❤️</p>
-    </footer>
+        sidebarOverlay?.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        // Close sidebar on mobile when clicking a link
+        document.querySelectorAll('#sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.add('-translate-x-full');
+                    sidebarOverlay.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,13 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Kategori')
+@section('page-title', 'Kategori Produk')
+@section('page-description', 'Kelola kategori produk JerukPin')
 
 @section('content')
-<div class="flex justify-between items-center mb-6">
-    <div>
-        <h1 class="text-3xl font-heading font-bold text-neutral-900">📁 Kategori Produk</h1>
-        <p class="text-neutral-600 mt-1">Kelola kategori produk JerukPin</p>
-    </div>
+<div class="flex justify-end items-center mb-6">
     <a href="{{ route('admin.categories.create') }}" class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition flex items-center gap-2">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
@@ -57,7 +55,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
                         <a href="{{ route('admin.categories.edit', $category) }}" class="text-orange-600 hover:text-orange-900 font-medium">✏️ Edit</a>
-                        <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus kategori ini?')">
+                        <form action="{{ route('admin.categories.destroy', $category) }}\" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus kategori ini?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-600 hover:text-red-900 font-medium">🗑️ Hapus</button>

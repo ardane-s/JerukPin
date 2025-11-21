@@ -1,17 +1,3 @@
-@extends('admin.layouts.app')
-
-@section('title', 'Dashboard Admin')
-
-@section('content')
-<div class="mb-6">
-    <h1 class="text-3xl font-heading font-bold text-neutral-900">Dashboard Admin</h1>
-    <p class="text-neutral-600">Selamat datang kembali! 👋</p>
-</div>
-
-<!-- Statistics Cards -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-    <!-- Products -->
-    <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-lg p-6 text-white">
         <div class="flex items-center justify-between mb-4">
             <div class="text-4xl">📦</div>
             <div class="text-right">
