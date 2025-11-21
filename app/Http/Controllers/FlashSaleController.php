@@ -3,51 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\FlashSale;
+use App\Models\FlashSaleCampaign;
 use App\Models\Product;
+use App\Services\FlashSaleCampaignService;
 use Illuminate\Http\Request;
 
 class FlashSaleController extends Controller
 {
     public function index()
     {
-        // Get all flash sales grouped by session (start_time)
-        $allFlashSales = FlashSale::with(['productVariant.product.images'])
-            ->where('end_time', '>', now())
-            ->orderBy('start_time', 'asc')
-            ->get()
-            ->groupBy(function($sale) {
-                return $sale->start_time->format('Y-m-d H:i');
-            });
+        // Get active campaign with products
+        $activeCampaign = FlashSaleCampaignService::getActiveCampaign();
         
-        // Separate active and upcoming sessions
-        $activeSession = null;
-        $upcomingSessions = collect();
+        // Get upcoming campaign (teaser)
+        $upcomingCampaign = FlashSaleCampaignService::getUpcomingCampaign();
         
-        foreach ($allFlashSales as $sessionTime => $sales) {
-            $firstSale = $sales->first();
-            if ($firstSale->start_time <= now() && $firstSale->end_time > now()) {
-                // This is the active session
-                $activeSession = [
-                    'start_time' => $firstSale->start_time,
-                    'end_time' => $firstSale->end_time,
-                    'sales' => $sales
-                ];
-            } elseif ($firstSale->start_time > now()) {
-                // This is an upcoming session
-                $upcomingSessions->push([
-                    'start_time' => $firstSale->start_time,
-                    'end_time' => $firstSale->end_time,
-                    'sales' => $sales
-                ]);
-            }
-        }
-        
-        return view('customer.flash-sales.index', compact('activeSession', 'upcomingSessions'));
+        return view('customer.flash-sales.index', compact('activeCampaign', 'upcomingCampaign'));
     }
     
     public function show($id)
     {
-        $flashSale = FlashSale::with(['productVariant.product.images', 'productVariant.product.category'])
+        $flashSale = FlashSale::with(['productVariant.product.images', 'productVariant.product.category', 'campaign'])
             ->findOrFail($id);
         
         // Get related products from same category
