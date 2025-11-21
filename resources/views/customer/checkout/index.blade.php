@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Checkout')
 
@@ -63,27 +63,10 @@
                         <div class="mb-4">
                             <label class="block text-sm font-medium mb-2">Alamat Lengkap *</label>
                             <textarea name="guest_address" rows="3" required class="w-full px-4 py-2 border border-neutral-300 rounded-lg">{{ old('guest_address') }}</textarea>
-                        </div>
-                    @endauth
-                </div>
-
-                <!-- Order Items -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                                <p class="font-bold">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <!-- Payment Method Selection -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h2 class="text-xl font-bold mb-4">💳 Metode Pembayaran</h2>
-                    <div class="space-y-3">
-                        <!-- Bank Transfer -->
                         <label class="flex items-center p-4 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-orange-500 transition">
                             <input type="radio" name="payment_method" value="bank_transfer" checked class="mr-3 w-5 h-5 text-orange-500">
                             <div class="flex-1">
-                                <div class="font-bold text-neutral-900">🏦 Transfer Bank</div>
+                                <div class="font-bold text-neutral-900">≡ƒÅª Transfer Bank</div>
                                 <div class="text-sm text-neutral-500">BCA, BNI, Mandiri, BRI</div>
                             </div>
                         </label>
@@ -92,7 +75,7 @@
                         <label class="flex items-center p-4 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-orange-500 transition">
                             <input type="radio" name="payment_method" value="e_wallet" class="mr-3 w-5 h-5 text-orange-500">
                             <div class="flex-1">
-                                <div class="font-bold text-neutral-900">📱 E-Wallet</div>
+                                <div class="font-bold text-neutral-900">≡ƒô▒ E-Wallet</div>
                                 <div class="text-sm text-neutral-500">GoPay, OVO, Dana, ShopeePay</div>
                             </div>
                         </label>
@@ -101,7 +84,7 @@
                         <label class="flex items-center p-4 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-orange-500 transition">
                             <input type="radio" name="payment_method" value="cod" class="mr-3 w-5 h-5 text-orange-500">
                             <div class="flex-1">
-                                <div class="font-bold text-neutral-900">💵 Bayar di Tempat (COD)</div>
+                                <div class="font-bold text-neutral-900">≡ƒÆ╡ Bayar di Tempat (COD)</div>
                                 <div class="text-sm text-neutral-500">Bayar saat barang diterima</div>
                             </div>
                         </label>
