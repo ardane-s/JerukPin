@@ -94,16 +94,23 @@
                         
                         <div class="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-neutral-200" style="width: 250px; flex-shrink: 0;">
                             <!-- Product Image -->
-                            <div class="relative overflow-hidden bg-neutral-100 aspect-square">
-                                @if($image)
+                            <div class="relative overflow-hidden aspect-square">
+                                @if($image && $image->image_path !== 'products/placeholder-orange.jpg')
                                     <img src="{{ asset('storage/' . $image->image_path) }}" 
                                          alt="{{ $product->name }}" 
                                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                                 @else
                                     <!-- Orange Placeholder -->
-                                    <div class="w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
-                                        <svg class="w-20 h-20 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                    <div class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center">
+                                        <svg class="w-24 h-24 text-orange-500 opacity-60" fill="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" fill="url(#orangeGradient{{ $sale->id }})"/>
+                                            <ellipse cx="12" cy="8" rx="2" ry="3" fill="#4ade80" transform="rotate(-20 12 8)"/>
+                                            <defs>
+                                                <radialGradient id="orangeGradient{{ $sale->id }}">
+                                                    <stop offset="0%" stop-color="#fb923c"/>
+                                                    <stop offset="100%" stop-color="#f97316"/>
+                                                </radialGradient>
+                                            </defs>
                                         </svg>
                                     </div>
                                 @endif
@@ -249,21 +256,21 @@
                         @endphp
                         
                         <div class="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-blue-200" style="width: 250px; flex-shrink: 0;">
-                            <!-- Mystery Image (Blurred Product or Orange Placeholder) -->
-                            <div class="relative overflow-hidden bg-gradient-to-br from-blue-100 to-indigo-100 aspect-square">
-                                @if($image)
-                                    <!-- Blurred Product Image -->
-                                    <img src="{{ asset('storage/' . $image->image_path) }}" 
-                                         alt="Mystery Product" 
-                                         class="w-full h-full object-cover blur-xl opacity-40">
-                                @else
-                                    <!-- Blurred Orange Placeholder -->
-                                    <div class="w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 blur-md opacity-30 flex items-center justify-center">
-                                        <svg class="w-20 h-20 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                                        </svg>
-                                    </div>
-                                @endif
+                            <!-- Orange Placeholder for Mystery Product -->
+                            <div class="relative overflow-hidden aspect-square">
+                                <!-- Orange Placeholder Background -->
+                                <div class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center">
+                                    <svg class="w-24 h-24 text-orange-500 opacity-40 blur-sm" fill="currentColor" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="10" fill="url(#orangeGradientMystery{{ $sale->id }})"/>
+                                        <ellipse cx="12" cy="8" rx="2" ry="3" fill="#4ade80" transform="rotate(-20 12 8)"/>
+                                        <defs>
+                                            <radialGradient id="orangeGradientMystery{{ $sale->id }}">
+                                                <stop offset="0%" stop-color="#fb923c"/>
+                                                <stop offset="100%" stop-color="#f97316"/>
+                                            </radialGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
                                 
                                 <!-- Lock Icon Overlay -->
                                 <div class="absolute inset-0 flex items-center justify-center">
