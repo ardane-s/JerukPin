@@ -56,44 +56,62 @@
 
             <!-- Payment Info for Pending Payment -->
             @if($order->status == 'pending_payment')
-                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-t-4 border-yellow-400 px-6 py-5">
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">💳</div>
-                        <div class="flex-1">
-                            <h3 class="font-bold text-yellow-900 text-lg mb-2">Informasi Pembayaran</h3>
-                            <p class="text-sm text-yellow-800 mb-4">Silakan transfer ke rekening berikut:</p>
-                            <div class="bg-white rounded-xl p-4 shadow-md space-y-2">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-neutral-600 font-medium">Bank:</span>
-                                    <span class="font-bold text-neutral-900">BCA</span>
+                @if($order->payment_method == 'cod')
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-t-4 border-green-400 px-6 py-5">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">💵</div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-green-900 text-lg mb-2">Pembayaran COD (Cash on Delivery)</h3>
+                                <p class="text-sm text-green-800 mb-2">Pesanan Anda akan segera diproses.</p>
+                                <p class="text-sm text-green-800">Silakan siapkan uang tunai sebesar <span class="font-bold text-lg">Rp {{ number_format($order->total, 0, ',', '.') }}</span> saat barang tiba.</p>
+                                <div class="flex gap-3 mt-4">
+                                    <button type="button" onclick="showCancelModal()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-bold transition shadow-md hover:shadow-lg">
+                                        ❌ Batalkan Pesanan
+                                    </button>
                                 </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-neutral-600 font-medium">No. Rekening:</span>
-                                    <span class="font-bold text-neutral-900">1234567890</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-neutral-600 font-medium">Atas Nama:</span>
-                                    <span class="font-bold text-neutral-900">JerukPin Indonesia</span>
-                                </div>
-                                <div class="border-t-2 border-dashed border-neutral-200 pt-2 mt-2">
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-neutral-600 font-medium">Jumlah Transfer:</span>
-                                        <span class="text-2xl font-bold text-orange-600">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex gap-3 mt-4">
-                                <a href="{{ route('orders.payment', $order->order_number) }}" 
-                                   class="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-bold text-center transition shadow-md hover:shadow-lg">
-                                    📤 Upload Bukti Pembayaran
-                                </a>
-                                <button type="button" onclick="showCancelModal()" class="flex-1 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-bold transition shadow-md hover:shadow-lg">
-                                    ❌ Batalkan Pesanan
-                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-t-4 border-yellow-400 px-6 py-5">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">💳</div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-yellow-900 text-lg mb-2">Informasi Pembayaran</h3>
+                                <p class="text-sm text-yellow-800 mb-4">Silakan transfer ke rekening berikut:</p>
+                                <div class="bg-white rounded-xl p-4 shadow-md space-y-2">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-neutral-600 font-medium">Bank:</span>
+                                        <span class="font-bold text-neutral-900">BCA</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-neutral-600 font-medium">No. Rekening:</span>
+                                        <span class="font-bold text-neutral-900">1234567890</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-neutral-600 font-medium">Atas Nama:</span>
+                                        <span class="font-bold text-neutral-900">JerukPin Indonesia</span>
+                                    </div>
+                                    <div class="border-t-2 border-dashed border-neutral-200 pt-2 mt-2">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-neutral-600 font-medium">Jumlah Transfer:</span>
+                                            <span class="text-2xl font-bold text-orange-600">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 mt-4">
+                                    <a href="{{ route('orders.payment', $order->order_number) }}" 
+                                       class="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-bold text-center transition shadow-md hover:shadow-lg">
+                                        📤 Upload Bukti Pembayaran
+                                    </a>
+                                    <button type="button" onclick="showCancelModal()" class="flex-1 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-bold transition shadow-md hover:shadow-lg">
+                                        ❌ Batalkan Pesanan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @elseif($order->status == 'payment_uploaded')
                 <div class="bg-blue-50 border-t-4 border-blue-400 px-6 py-4">
                     <div class="flex items-center gap-3">
@@ -122,9 +140,12 @@
                         @foreach($order->orderItems as $item)
                             <div class="flex gap-4 p-4 bg-gradient-to-r from-orange-50 to-white rounded-xl border border-orange-100 hover:shadow-md transition">
                                 @if($item->productVariant && $item->productVariant->product && $item->productVariant->product->images->first())
-                                    <img src="{{ asset('storage/' . $item->productVariant->product->images->first()->image_path) }}" 
-                                         alt="{{ $item->product_name }}" 
-                                         class="w-20 h-20 object-cover rounded-lg shadow-md">
+                                    <div class="relative w-20 h-20 flex-shrink-0">
+                                        <img src="{{ asset('storage/' . $item->productVariant->product->images->first()->image_path) }}" 
+                                             alt="{{ $item->product_name }}" 
+                                             class="w-20 h-20 object-cover rounded-lg shadow-md"
+                                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-20 h-20 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center rounded-lg text-4xl\'>🍊</div>';">
+                                    </div>
                                 @else
                                     <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg flex items-center justify-center text-4xl shadow-md">
                                         🍊
