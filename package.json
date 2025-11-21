@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "npm run build:css",
+        "build:css": "tailwindcss -i ./resources/css/tailwind.css -o ./public/css/app.css --minify"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
