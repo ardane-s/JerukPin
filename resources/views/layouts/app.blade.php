@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'JerukPin - Jeruk Segar Berkualitas')</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
+    @if(app()->environment('local'))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <script src="//unpkg.com/alpinejs" defer></script>
+    @endif
+    
     <style>
         @keyframes rainbow {
             0% { color: #ff0000; }
