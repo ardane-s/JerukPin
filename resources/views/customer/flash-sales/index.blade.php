@@ -345,6 +345,223 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+/* Background Animation Keyframes */
+@keyframes firefly-1 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.4;
+    }
+    25% {
+        transform: translate(30px, -20px) scale(1.1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-20px, 30px) scale(0.9);
+        opacity: 0.3;
+    }
+    75% {
+        transform: translate(40px, 10px) scale(1.05);
+        opacity: 0.45;
+    }
+}
+
+@keyframes firefly-2 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+    }
+    33% {
+        transform: translate(-40px, 25px) scale(1.15);
+        opacity: 0.6;
+    }
+    66% {
+        transform: translate(25px, -30px) scale(0.95);
+        opacity: 0.4;
+    }
+}
+
+@keyframes firefly-3 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.45;
+    }
+    40% {
+        transform: translate(35px, -25px) scale(1.1);
+        opacity: 0.55;
+    }
+    80% {
+        transform: translate(-30px, 20px) scale(0.9);
+        opacity: 0.35;
+    }
+}
+
+@keyframes firefly-4 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+    }
+    30% {
+        transform: translate(-25px, -30px) scale(1.12);
+        opacity: 0.6;
+    }
+    70% {
+        transform: translate(30px, 25px) scale(0.92);
+        opacity: 0.4;
+    }
+}
+
+@keyframes ember-1 {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-40px) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+@keyframes ember-2 {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-50px) rotate(-180deg);
+        opacity: 1;
+    }
+}
+
+@keyframes ember-3 {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.75;
+    }
+    50% {
+        transform: translateY(-45px) rotate(180deg);
+        opacity: 0.95;
+    }
+}
+
+@keyframes ember-4 {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-35px) rotate(-180deg);
+        opacity: 1;
+    }
+}
+
+@keyframes sparkle-1 {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes sparkle-2 {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(0.9);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+@keyframes sparkle-3 {
+    0%, 100% {
+        opacity: 0.35;
+        transform: scale(0.85);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.25);
+    }
+}
+
+@keyframes sparkle-4 {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(0.9);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes sparkle-5 {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* Apply animations */
+.animate-firefly-1 {
+    animation: firefly-1 8s ease-in-out infinite;
+}
+
+.animate-firefly-2 {
+    animation: firefly-2 10s ease-in-out infinite;
+}
+
+.animate-firefly-3 {
+    animation: firefly-3 9s ease-in-out infinite;
+}
+
+.animate-firefly-4 {
+    animation: firefly-4 11s ease-in-out infinite;
+}
+
+.animate-ember-1 {
+    animation: ember-1 4s ease-in-out infinite;
+}
+
+.animate-ember-2 {
+    animation: ember-2 5s ease-in-out infinite;
+}
+
+.animate-ember-3 {
+    animation: ember-3 4.5s ease-in-out infinite;
+}
+
+.animate-ember-4 {
+    animation: ember-4 5.5s ease-in-out infinite;
+}
+
+.animate-sparkle-1 {
+    animation: sparkle-1 2s ease-in-out infinite;
+}
+
+.animate-sparkle-2 {
+    animation: sparkle-2 2.5s ease-in-out infinite;
+}
+
+.animate-sparkle-3 {
+    animation: sparkle-3 2.2s ease-in-out infinite;
+}
+
+.animate-sparkle-4 {
+    animation: sparkle-4 2.8s ease-in-out infinite;
+}
+
+.animate-sparkle-5 {
+    animation: sparkle-5 2.3s ease-in-out infinite;
+}
 </style>
 
 <!-- Countdown Timer Script -->
