@@ -66,6 +66,25 @@
                         </div>
                     @endauth
                 </div>
+
+                <!-- Order Items -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-bold mb-4">🛒 Ringkasan Pesanan</h2>
+                    @foreach($cartItems as $item)
+                        <div class="flex items-center gap-4 py-4 border-b border-neutral-200">
+                            <div class="relative w-20 h-20 flex-shrink-0">
+                                <img src="{{ $item->productVariant->product->images->first() ? asset('storage/' . $item->productVariant->product->images->first()->image_path) : asset('images/placeholder.jpg') }}" 
+                                     alt="{{ $item->productVariant->product->name }}" 
+                                     class="w-20 h-20 object-cover rounded-lg"
+                                     onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-20 h-20 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center rounded-lg text-4xl\'>🍊</div>';">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold">{{ $item->productVariant->product->name }}</h3>
+                                <p class="text-sm text-neutral-600">{{ $item->productVariant->variant_name }}</p>
+                                <p class="text-sm text-neutral-600">Qty: {{ $item->quantity }}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</p>
                             </div>
                         </div>
                     @endforeach
