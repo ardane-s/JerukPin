@@ -10,18 +10,7 @@
                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
             @else
                 <!-- Orange Placeholder matching the design -->
-                <div class="w-full h-48 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <svg class="w-24 h-24 text-orange-500 opacity-60" fill="currentColor" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" fill="url(#orangeGradient)"/>
-                        <ellipse cx="12" cy="8" rx="2" ry="3" fill="#4ade80" transform="rotate(-20 12 8)"/>
-                        <defs>
-                            <radialGradient id="orangeGradient">
-                                <stop offset="0%" stop-color="#fb923c"/>
-                                <stop offset="100%" stop-color="#f97316"/>
-                            </radialGradient>
-                        </defs>
-                    </svg>
-                </div>
+                <div class="w-full h-48 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500 text-9xl">🍊</div>
             @endif
             <!-- Gradient Overlay on Hover -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

@@ -101,32 +101,10 @@
                                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                                          onerror="this.style.display='none'; document.getElementById('placeholder-{{ $sale->id }}').style.display='flex';">
                                     <!-- Orange Placeholder (hidden by default, shown on error) -->
-                                    <div id="placeholder-{{ $sale->id }}" class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center" style="display: none;">
-                                        <svg class="w-24 h-24 text-orange-500 opacity-60" fill="currentColor" viewBox="0 0 24 24">
-                                            <circle cx="12" cy="12" r="10" fill="url(#orangeGradient{{ $sale->id }})"/>
-                                            <ellipse cx="12" cy="8" rx="2" ry="3" fill="#4ade80" transform="rotate(-20 12 8)"/>
-                                            <defs>
-                                                <radialGradient id="orangeGradient{{ $sale->id }}">
-                                                    <stop offset="0%" stop-color="#fb923c"/>
-                                                    <stop offset="100%" stop-color="#f97316"/>
-                                                </radialGradient>
-                                            </defs>
-                                        </svg>
-                                    </div>
+                                    <div id="placeholder-{{ $sale->id }}" class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center text-8xl" style="display: none;">🍊</div>
                                 @else
                                     <!-- Orange Placeholder -->
-                                    <div class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center">
-                                        <svg class="w-24 h-24 text-orange-500 opacity-60" fill="currentColor" viewBox="0 0 24 24">
-                                            <circle cx="12" cy="12" r="10" fill="url(#orangeGradient{{ $sale->id }})"/>
-                                            <ellipse cx="12" cy="8" rx="2" ry="3" fill="#4ade80" transform="rotate(-20 12 8)"/>
-                                            <defs>
-                                                <radialGradient id="orangeGradient{{ $sale->id }}">
-                                                    <stop offset="0%" stop-color="#fb923c"/>
-                                                    <stop offset="100%" stop-color="#f97316"/>
-                                                </radialGradient>
-                                            </defs>
-                                        </svg>
-                                    </div>
+                                    <div class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center text-8xl">🍊</div>
                                 @endif
                                 
                                 <!-- Discount Badge -->
@@ -273,18 +251,7 @@
                             <!-- Orange Placeholder for Mystery Product -->
                             <div class="relative overflow-hidden aspect-square">
                                 <!-- Orange Placeholder Background -->
-                                <div class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center">
-                                    <svg class="w-24 h-24 text-orange-500 opacity-40 blur-sm" fill="currentColor" viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="10" fill="url(#orangeGradientMystery{{ $sale->id }})"/>
-                                        <ellipse cx="12" cy="8" rx="2" ry="3" fill="#4ade80" transform="rotate(-20 12 8)"/>
-                                        <defs>
-                                            <radialGradient id="orangeGradientMystery{{ $sale->id }}">
-                                                <stop offset="0%" stop-color="#fb923c"/>
-                                                <stop offset="100%" stop-color="#f97316"/>
-                                            </radialGradient>
-                                        </defs>
-                                    </svg>
-                                </div>
+                                <div class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center text-8xl blur-sm opacity-40">🍊</div>
                                 
                                 <!-- Lock Icon Overlay -->
                                 <div class="absolute inset-0 flex items-center justify-center">
