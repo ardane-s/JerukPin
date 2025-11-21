@@ -2,11 +2,24 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 export default {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
+        './app/**/*.php',
+    ],
+
+    safelist: [
+        {
+            pattern: /(bg|text|border)-(primary|secondary|neutral)-(50|100|200|300|400|500|600|700|800|900)/,
+        },
+        {
+            pattern: /(bg|text|border)-(orange|green|red|blue|yellow|indigo)-(50|100|200|300|400|500|600|700|800|900)/,
+        },
     ],
 
     theme: {
