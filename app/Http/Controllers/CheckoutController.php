@@ -114,14 +114,19 @@ class CheckoutController extends Controller
             
             DB::commit();
             
-            // Redirect based on user type
-            if (auth()->check()) {
-                // Logged-in users go to their orders page
-                return redirect()->route('orders.index')
-                    ->with('success', '✅ Pesanan berhasil dibuat! Silakan lakukan pembayaran.');
+            // Redirect based on payment method
+            if ($order->payment_method === 'cod') {
+                // COD orders go directly to order detail
+                if (auth()->check()) {
+                    return redirect()->route('orders.show', $order->order_number)
+                        ->with('success', '✅ Pesanan berhasil dibuat! Silakan siapkan uang tunai saat barang tiba.');
+                } else {
+                    return redirect()->route('orders.show', $order->order_number)
+                        ->with('success', '✅ Pesanan berhasil dibuat! Silakan siapkan uang tunai saat barang tiba.');
+                }
             } else {
-                // Guests go to order tracking page with their order number
-                return redirect()->route('orders.show', $order->order_number)
+                // Bank transfer / E-wallet orders go to Midtrans payment page
+                return redirect()->route('payment.show', $order->order_number)
                     ->with('success', '✅ Pesanan berhasil dibuat! Silakan lakukan pembayaran.');
             }
                 

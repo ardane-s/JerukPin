@@ -69,7 +69,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
     Route::get('/wishlist/check/{product}', [WishlistController::class, 'check'])->name('wishlist.check');
+    
+    // Payment routes (authenticated customers only)
+    Route::get('/payment/{orderNumber}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payment.show');
 });
+
+// Payment callback and notification (accessible to all)
+Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'callback'])->name('payment.callback');
+Route::post('/payment/notification', [App\Http\Controllers\PaymentController::class, 'notification'])->name('payment.notification');
 
 
 // Admin Routes (Protected by auth + super_admin middleware)

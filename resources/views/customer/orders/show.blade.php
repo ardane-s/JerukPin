@@ -100,9 +100,9 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-3 mt-4">
-                                    <a href="{{ route('orders.payment', $order->order_number) }}" 
+                                    <a href="{{ route('payment.show', $order->order_number) }}" 
                                        class="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-bold text-center transition shadow-md hover:shadow-lg">
-                                        📤 Upload Bukti Pembayaran
+                                        💳 Bayar Sekarang
                                     </a>
                                     <button type="button" onclick="showCancelModal()" class="flex-1 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-bold transition shadow-md hover:shadow-lg">
                                         ❌ Batalkan Pesanan
