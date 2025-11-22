@@ -20,6 +20,72 @@ use App\Http\Controllers\Admin\AdminReviewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
+// Check and Seed Route (For Railway deployment)
+Route::get('/check-and-seed', function() {
+    try {
+        $result = [
+            'status' => 'Starting...',
+            'admin' => null,
+            'products' => 0,
+            'categories' => 0,
+            'payment_methods' => 0,
+            'settings' => 0,
+        ];
+        
+        // Run migrations first
+        Artisan::call('migrate', ['--force' => true]);
+        $result['migrations'] = 'Done';
+        
+        // Run the seeder
+        Artisan::call('db:seed', [
+            '--class' => 'RealJerukPinSeeder',
+            '--force' => true
+        ]);
+        
+        // Check what was created
+        $result['admin'] = \App\Models\User::where('email', 'jerukpin@gmail.com')->first();
+        $result['products'] = \App\Models\Product::count();
+        $result['categories'] = \App\Models\Category::count();
+        $result['payment_methods'] = \App\Models\PaymentMethod::count();
+        $result['settings'] = \App\Models\Setting::count();
+        $result['status'] = 'Success!';
+        
+        return '<div style="font-family: Arial; padding: 40px; max-width: 800px; margin: 0 auto;">
+            <h1 style="color: #FF8A00;">✅ Database Ready!</h1>
+            <div style="background: #f0fdf4; border: 2px solid #10b981; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h2 style="margin-top: 0;">✓ Admin Account</h2>
+                <p><strong>Email:</strong> ' . ($result['admin'] ? $result['admin']->email : 'NOT FOUND!') . '</p>
+                <p><strong>Password:</strong> Jerukjerukjerukpin!</p>
+                <p><strong>Role:</strong> ' . ($result['admin'] ? $result['admin']->role : 'N/A') . '</p>
+            </div>
+            <div style="background: #eff6ff; border: 2px solid #3b82f6; padding: 20px; border-radius: 10px;">
+                <h2 style="margin-top: 0;">📊 Database Summary</h2>
+                <ul style="font-size: 16px;">
+                    <li>Categories: ' . $result['categories'] . '</li>
+                    <li>Products: ' . $result['products'] . '</li>
+                    <li>Payment Methods: ' . $result['payment_methods'] . '</li>
+                    <li>Settings: ' . $result['settings'] . '</li>
+                </ul>
+            </div>
+            <div style="margin-top: 30px;">
+                <a href="/" style="display: inline-block; padding: 12px 24px; background: #FF8A00; color: white; text-decoration: none; border-radius: 8px; margin-right: 10px;">🏠 Homepage</a>
+                <a href="/admin" style="display: inline-block; padding: 12px 24px; background: #10b981; color: white; text-decoration: none; border-radius: 8px;">🔐 Admin Panel</a>
+            </div>
+        </div>';
+        
+    } catch (\Exception $e) {
+        return '<div style="font-family: Arial; padding: 40px; color: red;">
+            <h1>❌ Error!</h1>
+            <p><strong>Message:</strong> ' . $e->getMessage() . '</p>
+            <details>
+                <summary style="cursor: pointer; color: blue;">Show Stack Trace</summary>
+                <pre style="background: #f3f4f6; padding: 15px; border-radius: 5px; overflow-x: auto;">' . $e->getTraceAsString() . '</pre>
+            </details>
+            <a href="/check-and-seed" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #FF8A00; color: white; text-decoration: none; border-radius: 5px;">🔄 Try Again</a>
+        </div>';
+    }
+});
+
 // Emergency Database Seeder (Public - Remove after use!)
 Route::get('/seed-now-emergency', function() {
     try {
