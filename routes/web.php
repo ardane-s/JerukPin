@@ -189,11 +189,20 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('orders/{order}/verify-payment', [AdminOrderController::class, 'verifyPayment'])->name('orders.verify');
     Route::post('orders/{order}/reject-payment', [AdminOrderController::class, 'rejectPayment'])->name('orders.reject');
     
+    
     // Reviews
     Route::get('reviews', [AdminReviewController::class, 'index'])->name('reviews.index');
     Route::get('reviews/{review}', [AdminReviewController::class, 'show'])->name('reviews.show');
     Route::post('reviews/{review}/approve', [AdminReviewController::class, 'approve'])->name('reviews.approve');
     Route::delete('reviews/{review}', [AdminReviewController::class, 'destroy'])->name('reviews.destroy');
+    
+    // Payment Methods
+    Route::resource('payment-methods', App\Http\Controllers\Admin\PaymentMethodController::class);
+    Route::post('payment-methods/{paymentMethod}/toggle', [App\Http\Controllers\Admin\PaymentMethodController::class, 'toggleActive'])->name('payment-methods.toggle');
+    
+    // Settings
+    Route::get('settings/shipping', [App\Http\Controllers\Admin\SettingController::class, 'shipping'])->name('settings.shipping');
+    Route::put('settings/shipping', [App\Http\Controllers\Admin\SettingController::class, 'updateShipping'])->name('settings.shipping.update');
 });
 
 // Breeze Default Routes

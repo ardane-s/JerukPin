@@ -20,10 +20,14 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('error', 'Keranjang kosong.');
         }
         
-        $total = $this->calculateTotal($cartItems);
+        $subtotal = $this->calculateTotal($cartItems);
         $addresses = auth()->check() ? auth()->user()->addresses : collect();
         
-        return view('customer.checkout.index', compact('cartItems', 'total', 'addresses'));
+        // Calculate shipping cost dynamically
+        $shippingCost = \App\Models\Setting::calculateShipping($subtotal);
+        $freeShippingThreshold = \App\Models\Setting::getFreeShippingThreshold();
+        
+        return view('customer.checkout.index', compact('cartItems', 'subtotal', 'addresses', 'shippingCost', 'freeShippingThreshold'));
     }
     
     public function store(Request $request)

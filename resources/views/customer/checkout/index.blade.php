@@ -132,20 +132,29 @@
                     <div class="space-y-2 mb-4">
                         <div class="flex justify-between">
                             <span>Subtotal</span>
-                            <span>Rp {{ number_format($total, 0, ',', '.') }}</span>
+                            <span>Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span>Ongkir</span>
-                            <span>Rp 10.000</span>
+                            @if($shippingCost == 0)
+                                <span class="text-green-600 font-bold">GRATIS! 🎉</span>
+                            @else
+                                <span>Rp {{ number_format($shippingCost, 0, ',', '.') }}</span>
+                            @endif
                         </div>
+                        @if($subtotal < $freeShippingThreshold && $shippingCost > 0)
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-2 text-xs">
+                                <p class="text-yellow-800">💡 Belanja <strong>Rp {{ number_format($freeShippingThreshold - $subtotal, 0, ',', '.') }}</strong> lagi untuk gratis ongkir!</p>
+                            </div>
+                        @endif
                     </div>
                     
-                    <input type="hidden" name="shipping_cost" value="10000">
+                    <input type="hidden" name="shipping_cost" value="{{ $shippingCost }}">
                     
                     <div class="border-t pt-4 mb-6">
                         <div class="flex justify-between text-lg font-bold">
                             <span>Total</span>
-                            <span class="text-orange-600">Rp {{ number_format($total + 10000, 0, ',', '.') }}</span>
+                            <span class="text-orange-600">Rp {{ number_format($subtotal + $shippingCost, 0, ',', '.') }}</span>
                         </div>
                     </div>
                     

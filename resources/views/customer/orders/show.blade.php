@@ -80,53 +80,67 @@
                                 <h3 class="font-bold text-yellow-900 text-lg mb-2">Informasi Pembayaran</h3>
                                 <p class="text-sm text-yellow-800 mb-4">Silakan pilih bank dan transfer ke rekening berikut:</p>
                                 
-                                <!-- Bank Selection -->
-                                <div class="bg-white rounded-xl p-4 shadow-md space-y-3 mb-4">
-                                    <label class="block text-sm font-bold text-neutral-700 mb-2">Pilih Bank Transfer:</label>
-                                    <select id="bankSelector" class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg font-bold text-neutral-900 focus:border-orange-500">
-                                        <option value="bca">BCA</option>
-                                        <option value="bni">BNI</option>
-                                        <option value="bri">BRI</option>
-                                        <option value="mandiri">Mandiri</option>
-                                    </select>
-                                </div>
+                                @php
+                                    $paymentMethods = \App\Models\PaymentMethod::active()->ordered()->get();
+                                @endphp
                                 
-                                <!-- Bank Details (Dynamic) -->
-                                <div class="bg-white rounded-xl p-4 shadow-md space-y-2" id="bankDetails">
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-neutral-600 font-medium">Bank:</span>
-                                        <span class="font-bold text-neutral-900" id="bankName">BCA</span>
+                                @if($paymentMethods->count() > 0)
+                                    <!-- Bank Selection -->
+                                    <div class="bg-white rounded-xl p-4 shadow-md space-y-3 mb-4">
+                                        <label class="block text-sm font-bold text-neutral-700 mb-2">Pilih Bank Transfer:</label>
+                                        <select id="bankSelector" class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg font-bold text-neutral-900 focus:border-orange-500">
+                                            @foreach($paymentMethods as $index => $method)
+                                                <option value="{{ $index }}">{{ $method->bank_name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-neutral-600 font-medium">No. Rekening:</span>
-                                        <span class="font-bold text-neutral-900" id="accountNumber">1234567890</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-neutral-600 font-medium">Atas Nama:</span>
-                                        <span class="font-bold text-neutral-900">JerukPin Indonesia</span>
-                                    </div>
-                                    <div class="border-t-2 border-dashed border-neutral-200 pt-2 mt-2">
+                                    
+                                    <!-- Bank Details (Dynamic) -->
+                                    <div class="bg-white rounded-xl p-4 shadow-md space-y-2" id="bankDetails">
                                         <div class="flex justify-between items-center">
-                                            <span class="text-neutral-600 font-medium">Jumlah Transfer:</span>
-                                            <span class="text-2xl font-bold text-orange-600">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
+                                            <span class="text-neutral-600 font-medium">Bank:</span>
+                                            <span class="font-bold text-neutral-900" id="bankName">{{ $paymentMethods->first()->bank_name }}</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-neutral-600 font-medium">No. Rekening:</span>
+                                            <span class="font-bold text-neutral-900" id="accountNumber">{{ $paymentMethods->first()->account_number }}</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-neutral-600 font-medium">Atas Nama:</span>
+                                            <span class="font-bold text-neutral-900" id="accountHolder">{{ $paymentMethods->first()->account_holder }}</span>
+                                        </div>
+                                        <div class="border-t-2 border-dashed border-neutral-200 pt-2 mt-2">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-neutral-600 font-medium">Jumlah Transfer:</span>
+                                                <span class="text-2xl font-bold text-orange-600">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                <script>
-                                const bankData = {
-                                    bca: { name: 'BCA', account: '1234567890' },
-                                    bni: { name: 'BNI', account: '9876543210' },
-                                    bri: { name: 'BRI', account: '5555666677' },
-                                    mandiri: { name: 'Mandiri', account: '1111222233' }
-                                };
-                                
-                                document.getElementById('bankSelector').addEventListener('change', function() {
-                                    const bank = bankData[this.value];
-                                    document.getElementById('bankName').textContent = bank.name;
-                                    document.getElementById('accountNumber').textContent = bank.account;
-                                });
-                                </script>
+                                    
+                                    <script>
+                                    const bankData = [
+                                        @foreach($paymentMethods as $method)
+                                            { 
+                                                name: '{{ $method->bank_name }}', 
+                                                account: '{{ $method->account_number }}',
+                                                holder: '{{ $method->account_holder }}'
+                                            },
+                                        @endforeach
+                                    ];
+                                    
+                                    document.getElementById('bankSelector').addEventListener('change', function() {
+                                        const bank = bankData[this.value];
+                                        document.getElementById('bankName').textContent = bank.name;
+                                        document.getElementById('accountNumber').textContent = bank.account;
+                                        document.getElementById('accountHolder').textContent = bank.holder;
+                                    });
+                                    </script>
+                                @else
+                                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                                        <p class="text-red-800 font-bold">⚠️ Tidak ada metode pembayaran tersedia</p>
+                                        <p class="text-sm text-red-600">Silakan hubungi admin.</p>
+                                    </div>
+                                @endif
                                 <div class="flex gap-3 mt-4">
                                     <a href="{{ route('orders.payment', $order->order_number) }}" 
                                        class="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-bold text-center transition shadow-md hover:shadow-lg">
