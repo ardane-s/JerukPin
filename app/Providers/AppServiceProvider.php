@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force HTTPS in production (Railway deployment)
+        if (config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
+        
         // Share active flash sale status with navbar
         view()->composer('layouts.app', \App\View\Composers\NavbarComposer::class);
     }
