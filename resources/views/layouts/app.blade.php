@@ -156,7 +156,7 @@
         }
     </style>
 </head>
-<body class="bg-neutral-100">
+<body class="bg-neutral-100" style="min-height: 100vh; display: flex; flex-direction: column;">
     <!-- Loading Overlay with Bouncing Oranges -->
     <div id="pageLoader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center transition-opacity duration-500" style="display: none;">
         <div class="flex items-center gap-4">
