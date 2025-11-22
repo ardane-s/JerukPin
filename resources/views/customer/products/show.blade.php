@@ -361,30 +361,51 @@
 // Variant Selection
 document.querySelectorAll('.variant-option').forEach(option => {
     option.addEventListener('click', function() {
-        // Remove selected state from all
+        // Remove selection from all
         document.querySelectorAll('.variant-option').forEach(opt => {
-            opt.querySelector('div').classList.remove('border-primary-500', 'bg-primary-50', 'shadow-lg');
-            opt.querySelector('div').classList.add('border-neutral-200');
-            opt.querySelector('.selected-indicator div').classList.remove('scale-100');
-            opt.querySelector('.selected-indicator div').classList.add('scale-0');
+            const radioInput = opt.querySelector('.variant-radio');
+            const borderDiv = opt.querySelector('div');
+            const indicator = opt.querySelector('.selected-indicator div');
+            
+            radioInput.checked = false;
+            borderDiv.classList.remove('border-primary-500', 'bg-primary-50', 'shadow-lg');
+            borderDiv.classList.add('border-neutral-200');
+            indicator.classList.remove('scale-100');
+            indicator.classList.add('scale-0');
         });
         
-        // Add selected state
-        const card = this.querySelector('div');
-        card.classList.remove('border-neutral-200');
-        card.classList.add('border-primary-500', 'bg-primary-50', 'shadow-lg');
-        this.querySelector('.selected-indicator div').classList.remove('scale-0');
-        this.querySelector('.selected-indicator div').classList.add('scale-100');
+        // Add selection to clicked
+        const radio = this.querySelector('.variant-radio');
+        const borderDiv = this.querySelector('div');
+        const indicator = this.querySelector('.selected-indicator div');
+        
+        radio.checked = true;
+        borderDiv.classList.add('border-primary-500', 'bg-primary-50', 'shadow-lg');
+        borderDiv.classList.remove('border-neutral-200');
+        indicator.classList.remove('scale-0');
+        indicator.classList.add('scale-100');
         
         // Update hidden input
         document.getElementById('selected-variant-id').value = this.dataset.variantId;
     });
 });
 
-// Set initial variant
-document.getElementById('selected-variant-id').value = document.querySelector('.variant-radio:checked').value;
-document.querySelector('.variant-option div').classList.add('border-primary-500', 'bg-primary-50', 'shadow-lg');
-document.querySelector('.selected-indicator div').classList.add('scale-100');
+// Set initial variant (first one)
+const firstVariant = document.querySelector('.variant-option');
+if (firstVariant) {
+    const firstRadio = firstVariant.querySelector('.variant-radio');
+    const firstBorderDiv = firstVariant.querySelector('div');
+    const firstIndicator = firstVariant.querySelector('.selected-indicator div');
+    
+    firstRadio.checked = true;
+    firstBorderDiv.classList.add('border-primary-500', 'bg-primary-50', 'shadow-lg');
+    firstBorderDiv.classList.remove('border-neutral-200');
+    firstIndicator.classList.remove('scale-0');
+    firstIndicator.classList.add('scale-100');
+    
+    document.getElementById('selected-variant-id').value = firstVariant.dataset.variantId;
+}
+
 
 // Quantity Controls
 function increaseQuantity() {
