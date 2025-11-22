@@ -233,8 +233,8 @@
                 <div class="p-4 bg-neutral-50 rounded-xl border border-neutral-200">
                     <div class="flex items-start justify-between mb-2">
                         <div>
-                            <p class="font-bold text-neutral-900 text-sm">{{ $review->user->name }}</p>
-                            <p class="text-xs text-neutral-500">{{ $review->product->name }}</p>
+                            <p class="font-bold text-neutral-900 text-sm">{{ $review->user->name ?? 'User Deleted' }}</p>
+                            <p class="text-xs text-neutral-500">{{ $review->product->name ?? 'Product Deleted' }}</p>
                         </div>
                         <div class="flex gap-0.5">
                             @for($i = 1; $i <= 5; $i++)
