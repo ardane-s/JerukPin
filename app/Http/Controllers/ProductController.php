@@ -45,7 +45,8 @@ class ProductController extends Controller
         
         $products = $query->paginate(12);
         $categories = Category::active()->get();
-        
+        $categories = \App\Models\Category::where('is_active', true)->get();
+
         return view('customer.products.index', compact('products', 'categories'));
     }
     
