@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\ProductImage;
+use App\Models\PaymentMethod;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -19,19 +21,6 @@ class RealJerukPinSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         ProductImage::truncate();
         ProductVariant::truncate();
-        Product::truncate();
-        Category::truncate();
-        DB::table('cart_items')->truncate();
-        DB::table('order_items')->truncate();
-        DB::table('orders')->truncate();
-        DB::table('flash_sales')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-        // Ensure admin exists
-        User::firstOrCreate(
-            ['email' => 'jerukpin@gmail.com'],
-            [
-                'name' => 'Admin JerukPin',
                 'phone' => '081234567890',
                 'password' => Hash::make('Jerukjerukjerukpin!'),
                 'role' => 'super_admin',
@@ -181,5 +170,57 @@ class RealJerukPinSeeder extends Seeder
                 ]);
             }
         }
+
+        // Seed Payment Methods
+        PaymentMethod::create([
+            'type' => 'bank_transfer',
+            'method_name' => 'BCA',
+            'account_info' => '1234567890',
+            'account_name' => 'PT JerukPin Indonesia',
+            'instructions' => 'Transfer ke rekening BCA di atas, lalu upload bukti transfer pada halaman pembayaran.',
+            'is_active' => true,
+            'sort_order' => 1,
+        ]);
+
+        PaymentMethod::create([
+            'type' => 'bank_transfer',
+            'method_name' => 'Mandiri',
+            'account_info' => '9876543210',
+            'account_name' => 'PT JerukPin Indonesia',
+            'instructions' => 'Transfer ke rekening Mandiri di atas, lalu upload bukti transfer pada halaman pembayaran.',
+            'is_active' => true,
+            'sort_order' => 2,
+        ]);
+
+        PaymentMethod::create([
+            'type' => 'e_wallet',
+            'method_name' => 'GoPay',
+            'account_info' => '08123456789',
+            'account_name' => 'Toko JerukPin',
+            'instructions' => 'Transfer ke nomor GoPay di atas, lalu screenshot bukti pembayaran dan upload pada halaman pembayaran.',
+            'is_active' => true,
+            'sort_order' => 3,
+        ]);
+
+        PaymentMethod::create([
+            'type' => 'cod',
+            'method_name' => 'Cash on Delivery',
+            'instructions' => 'Bayar dengan uang tunai saat barang diterima. Siapkan uang pas untuk mempermudah transaksi.',
+            'is_active' => true,
+            'sort_order' => 4,
+        ]);
+
+        // Seed Settings
+        Setting::create([
+            'key' => 'shipping_cost',
+            'value' => '10000',
+            'type' => 'integer',
+        ]);
+
+        Setting::create([
+            'key' => 'free_shipping_threshold',
+            'value' => '50000',
+            'type' => 'integer',
+        ]);
     }
 }
