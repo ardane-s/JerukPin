@@ -36,24 +36,7 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         
-        // Handle avatar upload (with safety check)
-        if ($request->hasFile('avatar')) {
-            try {
-                // Delete old avatar if exists
-                if (isset($user->avatar) && $user->avatar && \Storage::disk('public')->exists($user->avatar)) {
-                    \Storage::disk('public')->delete($user->avatar);
-                }
-                
-                // Store new avatar
-                $path = $request->file('avatar')->store('avatars', 'public');
-                $user->avatar = $path;
-            } catch (\Exception $e) {
-                // Avatar column might not exist yet - skip avatar update
-                \Log::warning('Avatar upload skipped: ' . $e->getMessage());
-            }
-        }
-        
-        // Update other fields
+        // Update fields
         $user->fill($request->validated());
 
         if ($user->isDirty('email')) {
