@@ -554,14 +554,13 @@
                             </form>
                         @endif
                     @else
-                        <a href="{{ route('register') }}" class="group relative px-4 py-1.5 bg-gradient-to-r from-primary-500 via-primary-600 to-secondary-500 text-white rounded-lg font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 overflow-hidden">
+                        <a href="{{ route('register') }}" class="group relative px-4 py-1.5 bg-green-600 text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:bg-green-700 transform hover:scale-105 transition-all duration-300">
                             <span class="relative z-10 flex items-center gap-1.5 text-sm">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                                 </svg>
                                 <span>Daftar</span>
                             </span>
-                            <div class="absolute inset-0 bg-gradient-to-r from-secondary-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </a>
                     @endguest
                     
