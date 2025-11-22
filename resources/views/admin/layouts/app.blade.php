@@ -19,7 +19,7 @@
 <body class="bg-neutral-100 font-sans antialiased">
     <div class="flex h-screen overflow-hidden">
         <!-- Left Sidebar - Responsive: Fixed on mobile, relative on desktop -->
-        <aside id="sidebar" class="fixed lg:relative inset-y-0 left-0 lg:translate-x-0 w-64 bg-gradient-to-b from-orange-600 to-orange-700 gradient-animate text-white flex-shrink-0 flex flex-col shadow-2xl transition-transform duration-300 z-50 -translate-x-full">
+        <aside id="sidebar" class="fixed lg:relative inset-y-0 left-0 w-64 bg-gradient-to-b from-orange-600 to-orange-700 gradient-animate text-white flex-shrink-0 flex flex-col shadow-2xl transition-transform duration-300 z-50 -translate-x-full lg:translate-x-0">
             <!-- Logo -->
             <div class="p-6 border-b border-orange-500/30">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 group">
