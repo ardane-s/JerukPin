@@ -19,6 +19,15 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminReviewController;
 use Illuminate\Support\Facades\Route;
 
+// Database Manager (Admin Only - Protected)
+Route::get('/admin/database-manager', [App\Http\Controllers\Admin\DatabaseManagerController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('admin.database.manager');
+
+Route::post('/admin/database-manager/seed', [App\Http\Controllers\Admin\DatabaseManagerController::class, 'seed'])
+    ->middleware(['auth'])
+    ->name('admin.database.seed');
+
 // Customer Routes (Public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
