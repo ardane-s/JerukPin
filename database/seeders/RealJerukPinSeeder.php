@@ -72,28 +72,28 @@ class RealJerukPinSeeder extends Seeder
             ]);
         }
 
-        // Product Data with Gen-Z "Alay" Style Descriptions
+        // Product Data - Professional E-Commerce Gen-Z Style
         $productsData = [
             // Es Jeruk Lokal
             [
                 'category' => 'Es Jeruk Lokal',
                 'name' => 'Es Jeruk Original',
                 'price' => 5000,
-                'description' => "Guys, ini dia minuman legendaris yang bikin kangen masa kecil! 🍊✨ Es Jeruk Original kita tuh asli pake jeruk lokal Pontianak yang dipetik pas lagi prime time! No caplang-caplang, purely jeruk asli yang di-press langsung.\n\nVibe-nya simple tapi NYESS banget! Rasa manis asamnya tuh pas di lidah, ga lebay, ga kemanisan, pokoknya balance perfecto. Ice-nya juga crispy gitu, bikin seger maksimal pas lagi gerah-gerahnya. Literally minuman comfort yang bikin hati adem, perut happy! 💯🧊\n\nPerfect buat yang lagi galau, lagi happy, atau lagi pengen sesuatu yang natural vibe. Main character energy banget dah pokoknya! 🌟",
+                'description' => "Minuman segar yang udah jadi favorit banyak orang! 🍊 Es Jeruk Original dibuat dari 100% jeruk lokal Pontianak pilihan yang dipetik saat matang sempurna. Tanpa pengawet dan pemanis buatan berlebihan.\n\nRasa manis dan asamnya pas banget di lidah, super refreshing especially pas cuaca lagi panas! Es batu yang crispy bikin sensasi dinginnya lebih terasa. Cocok buat kamu yang suka kesederhanaan tapi tetep pengen rasa yang natural dan enak.\n\nPerfect untuk menemani aktivitas sehari-hari atau sekadar bersantai. Dijamin bikin seger! ✨",
                 'images' => ['es-jeruk-original-1.png', 'es-jeruk-original-2.png', 'es-jeruk-original-3.png', 'es-jeruk-original-4.png', 'es-jeruk-original-5.png']
             ],
             [
                 'category' => 'Es Jeruk Lokal',
                 'name' => 'Es Jeruk Susu',
                 'price' => 7000,
-                'description' => "OMG! Ini tuh literally hug in a cup! 🤗🧡 Bayangin jeruk segar ketemu sama susu creamy, terus mereka jadian dan bikin kesempurnaan! Warnanya aesthetic banget, gradasi orange-white yang auto bikin feed IG kamu glowing!\n\nSeriously, ini minuman yang bakal bikin kamu jatuh cinta dari sip pertama. Creamy tapi fresh, sweet tapi ada kick asem-asemnya dikit. Teksturnya smooth banget kayak lagi minum dessert cair! 🍨💕\n\nCocok banget buat kamu yang suka minuman yang playful dan ga boring. Dijamin bakal jadi favorite drink kamu selamanya! Trust the process, trust Es Jeruk Susu! 🎀",
+                'description' => "Perpaduan unik yang lagi hits! 🧡 Es Jeruk Susu menggabungkan kesegaran jeruk lokal dengan kelembutan susu kental manis premium. Warnanya yang cantik dengan gradasi orange-white bikin tampilannya aesthetic banget!\n\nRasanya creamy tapi tetep fresh, manis tapi ada sedikit kick asem yang bikin ga eneg. Teksturnya smooth dan rich, seperti minum dessert cair yang menyegarkan. Recommended banget buat kamu yang suka minuman dengan rasa yang playful dan Instagram-worthy!\n\nCocok dinikmati kapan aja, dari pagi sampe malam. Pasti jadi favoritmu! 💯",
                 'images' => ['es-jeruk-susu-1.png', 'es-jeruk-susu-2.png', 'es-jeruk-susu-3.png', 'es-jeruk-susu-4.png', 'es-jeruk-susu-5.png']
             ],
             [
                 'category' => 'Es Jeruk Lokal',
                 'name' => 'Es Jeruk Madu',
                 'price' => 7000,
-                'description' => "Healthy queen spotted! 👑🐝 Es Jeruk Madu ini bener-bener the IT girl of healthy drinks. Perpaduan jeruk yang kaya vitamin C sama madu hutan yang organic, bikin minuman ini jadi power couple goals!\n\nRasanya? Glow up banget! Manis madu yang natural banget mellow-in sama keasaman jeruk, bikin harmoni yang chef's kiss! 😘✨ Plus ada aroma floral gitu yang calming banget, instant mood booster deh!\n\nBuat kamu yang sayang badan tapi tetep pengen yang enak, ini pilihan paling tepat! Boost energi, boost imun, boost vibes - all in one glass! Self-care never taste this good! 💪🌈",
+                'description' => "Pilihan sehat yang tetep enak! 🍯 Es Jeruk Madu memadukan vitamin C dari jeruk segar dengan manfaat madu hutan asli. Kombinasi yang pas untuk kamu yang peduli kesehatan tapi ga mau kompromi soal rasa.\n\nManis alami dari madu menyempurnakan keasaman jeruk, menciptakan harmoni rasa yang unik dengan aroma floral yang menenangkan. Bukan cuma menyegarkan, tapi juga baik untuk daya tahan tubuh!\n\nIdeal untuk boost energi alami di tengah aktivitas padat. Natural, sehat, dan pastinya enak! 💪🌿",
                 'images' => ['es-jeruk-madu-1.png', 'es-jeruk-madu-2.png', 'es-jeruk-madu-3.png', 'es-jeruk-madu-4.png', 'es-jeruk-madu-5.png']
             ],
             
@@ -102,21 +102,21 @@ class RealJerukPinSeeder extends Seeder
                 'category' => 'Es Jeruk Sunkist',
                 'name' => 'Es Sunkist Original',
                 'price' => 7000,
-                'description' => "Premium vibes only! 💎🍊 Es Sunkist Original ini bukan jeruk sembarangan, bestie! Pake Sunkist import yang warnanya aja udah bikin mata melek - orange super cerah yang vibrant abis!\n\nTaste-wise? SUPERIOR! Lebih manis, lebih aromatic, lebih everything yang bikin kamu merasa fancy! Rasanya ringan tapi flavor-packed, aftertaste-nya clean gitu, zero guilty feeling! 🌟✨\n\nKalo kamu tipe orang yang appreciate the finer things in life, minuman ini tuh literally made for you! Sunkist supremacy is real! 👑💯",
+                'description' => "Experience premium refreshment! 💎 Es Sunkist Original menggunakan jeruk Sunkist import pilihan yang terkenal dengan warna orange cerah dan aroma khas yang menggugah selera.\n\nKarakter rasanya yang lebih manis dan aromatic memberikan pengalaman minum yang beda dari jeruk biasa. Ringan di perut tapi kaya rasa, dengan aftertaste yang clean dan menyegarkan. Zero guilty feeling!\n\nBuat kamu yang appreciate kualitas premium dan rasa yang sophisticated. Worth every sip! ⭐",
                 'images' => ['es-sunkist-original-1.png', 'es-sunkist-original-2.png', 'es-sunkist-original-3.png', 'es-sunkist-original-4.png', 'es-sunkist-original-5.png']
             ],
             [
                 'category' => 'Es Jeruk Sunkist',
                 'name' => 'Es Sunkist Susu',
                 'price' => 8000,
-                'description' => "STOP SCROLLING! 📱✨ Ini dia minuman paling aesthetic sedunia! Es Sunkist Susu dengan warna pastel orange yang SO pretty, bikin kamu pengen foto dulu sebelum minum! 100% Instagram-worthy, no filter needed! 📸🎀\n\nTapi bukan cuma cantik doang ya bestie! Rasanya tuh INSANE! Sunkist yang sweet ketemu susu yang creamy, literally taste like creamsicle premium edition! Smooth, luxurious, bikin lidah happy dance! 💃🏻🧡\n\nKalo kamu sophisticated gang tapi tetep suka yang fresh-fresh, THIS IS YOUR DRINK! Main character drink for main character energy! ⭐💫",
+                'description' => "Minuman aesthetic yang super Instagram-worthy! 📸 Es Sunkist Susu hadir dengan warna pastel orange yang cantik banget, hasil perpaduan Sunkist import premium dengan susu creamy berkualitas.\n\nRasanya? Absolutely delicious! Manisnya Sunkist yang natural berpadu sempurna dengan susu, menciptakan taste experience seperti creamsicle premium. Smooth, creamy, dan tetep refreshing!\n\nPerfect choice buat kamu yang suka minuman yang enak dan tampilannya juga on point. Foto dulu, baru minum! 🎀",
                 'images' => ['es-sunkist-susu-1.png', 'es-sunkist-susu-2.png', 'es-sunkist-susu-3.png', 'es-sunkist-susu-4.png', 'es-sunkist-susu-5.png']
             ],
             [
                 'category' => 'Es Jeruk Sunkist',
                 'name' => 'Es Sunkist Madu',
                 'price' => 8000,
-                'description' => "Golden hours deserve golden drinks! ✨🍯 Es Sunkist Madu ini literally minuman sultan! Warna keemasan yang glowing, taste yang luxurious, vibes yang exclusive - ini tuh premium in every sip!\n\nRasa manis madu yang rich banget nge-elevate citrus vibes dari Sunkist sampe ke another level! Smooth di tenggorokan, soothing banget, bikin kamu auto relax mode on! 🌅💛\n\nPerfect buat yang mau pamper yourself after hustling all day! Because you deserve the best, bestie! Treat yourself like royalty! 👑✨",
+                'description' => "Luxury in a cup! ✨ Es Sunkist Madu menggabungkan jeruk Sunkist premium dengan madu murni berkualitas tinggi. Warna keemasannya yang glowing mencerminkan kualitas ingredients yang digunakan.\n\nRasa manis madu yang rich mengangkat citrus aroma dari Sunkist ke level berikutnya. Sangat smooth di tenggorokan dan memberikan sensasi relaksasi yang menenangkan. Premium quality you can taste!\n\nTreat yourself after a long day! Kamu deserve the best. Minuman ini perfect untuk me-time yang berkualitas. 👑",
                 'images' => ['es-sunkist-madu-1.png', 'es-sunkist-madu-2.png', 'es-sunkist-madu-3.png', 'es-sunkist-madu-4.png', 'es-sunkist-madu-5.png']
             ],
             
@@ -125,21 +125,21 @@ class RealJerukPinSeeder extends Seeder
                 'category' => 'Es Lemon',
                 'name' => 'Es Lemon Original',
                 'price' => 7000,
-                'description' => "WAKE UP CALL! ⚡🍋 Es Lemon Original adalah ultimate weapon buat ngusir ngantuk dan bad vibes! Rasa asamnya tuh NENDANG BANGET, bikin senses kamu langsung full mode active!\n\nFresh pressed lemon yang super aromatic, balanced sama gula cair just enough buat ngangkat rasa natural lemonnya. Tajam, clean, instantly refreshing! No joke, ini tuh energy drink versi natural! 💥✨\n\nBuat yang lagi butuh extra boost atau lagi kepanasan minta ampun, minuman ini tuh life saver banget! One sip aja langsung full battery! 🔋🌟",
+                'description' => "Instant energy booster! ⚡ Es Lemon Original adalah solusi terbaik untuk mengusir rasa kantuk dan refresh pikiran. Dibuat dari fresh-pressed lemon dengan kandungan vitamin C tinggi.\n\nRasa asamnya yang kuat tapi balanced bikin senses langsung aktif! Tajam, bersih, dan instantly refreshing tanpa rasa pahit. Seperti natural energy drink yang sehat dan menyegarkan.\n\nPerfect companion saat lagi butuh extra boost atau cuaca lagi terik banget. One sip = instant refresh! 🔋",
                 'images' => ['es-lemon-original-1.png', 'es-lemon-original-2.png', 'es-lemon-original-3.png', 'es-lemon-original-4.png', 'es-lemon-original-5.png']
             ],
             [
                 'category' => 'Es Lemon',
                 'name' => 'Es Lemon Susu',
                 'price' => 8000,
-                'description' => "Plot twist yang nobody expected! 🤯💛 Lemon + Susu = PERFECTION?! Yes bestie, it's real and it's SPECTACULAR! Ini literally the most unexpected collab yang actually works!\n\nKeasaman lemon yang galak di-tame sama creamy susu, hasilnya? Rasa unik yang kayak yogurt drink atau lemon cheesecake dalam bentuk minuman! Creamy, tangy, absolutely mind-blowing! 🎉🍰\n\nKalo kamu adventurous soul yang suka explore rasa-rasa baru, THIS IS YOUR SIGN! Break the rules, try the unusual, live your best life! 🌈✨",
+                'description' => "Unexpected combination that works! 💛 Lemon dan susu mungkin terdengar unusual, tapi trust us - kombinasi ini surprisingly delicious! Tekstur dan rasanya unik banget, mirip yogurt drink atau lemon cheesecake versi minuman.\n\nKeasaman lemon yang di-balance dengan creamy susu menciptakan flavor profile yang rich tapi tetep refreshing. Definitely a must-try untuk kamu yang suka eksperimen dengan rasa baru!\n\nBuat adventurous souls yang ga takut nyobain hal baru. Dijamin ga nyesel! 🌟",
                 'images' => ['es-lemon-susu-1.png', 'es-lemon-susu-2.png', 'es-lemon-susu-3.png', 'es-lemon-susu-4.png', 'es-lemon-susu-5.png']
             ],
             [
                 'category' => 'Es Lemon',
                 'name' => 'Es Lemon Madu',
                 'price' => 8000,
-                'description' => "The OG wellness drink! 🌿💚 Honey Lemon tuh literally resep nenek-nenek yang timeless! Tapi kita serve it cold, fresh, dan super refreshing! Ancient wisdom meets modern vibes! ✨🍋\n\nLemon yang loaded dengan antioxidants ketemu madu yang super nutritious, bikin minuman detox yang actually ENAK! Balance antara sour dan sweet, literally perfect harmony! 🎵💛\n\nDetox never taste this good, bestie! Bukan cuma nyegerin throat, tapi bikin badan berasa lighter dan lebih sehat! Glow from within energy! That's the power of Es Lemon Madu! 🌟💪",
+                'description' => "Classic wellness drink with a twist! 🍯 Honey Lemon adalah resep tradisional yang sudah terbukti manfaatnya, sekarang disajikan dingin dan super refreshing. Loaded dengan antioksidan dan nutrisi alami.\n\nPerpaduan lemon yang kaya vitamin C dengan madu yang penuh manfaat kesehatan, menciptakan minuman detox yang actually enak! Balance sempurna antara sour dan sweet.\n\nHealthy choice yang ga compromise soal rasa. Bikin badan berasa lebih ringan dan segar! Good for body, good for soul. 💚",
                 'images' => ['es-lemon-madu-1.png', 'es-lemon-madu-2.png', 'es-lemon-madu-3.png', 'es-lemon-madu-4.png', 'es-lemon-madu-5.png']
             ],
         ];
