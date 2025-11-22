@@ -19,12 +19,6 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminReviewController;
 use Illuminate\Support\Facades\Route;
 
-// TEMPORARY: One-time seeder route - DELETE AFTER USE
-Route::get('/seed-database-now', function () {
-    Artisan::call('db:seed', ['--class' => 'RealJerukPinSeeder']);
-    return '<h1>Database Seeded Successfully!</h1><p>9 juice products added.</p><a href="/">Go to Homepage</a><br><br><strong>IMPORTANT: Remove this route from web.php after use!</strong>';
-});
-
 // Customer Routes (Public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
