@@ -82,52 +82,6 @@
                                 <h3 class="font-bold">{{ $item->productVariant->product->name }}</h3>
                                 <p class="text-sm text-neutral-600">{{ $item->productVariant->variant_name }}</p>
                                 <p class="text-sm text-neutral-600">Qty: {{ $item->quantity }}</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="font-bold">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <!-- Payment Method Selection -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h2 class="text-xl font-bold mb-4">💳 Metode Pembayaran</h2>
-                    <div class="space-y-3">
-                        <!-- Bank Transfer -->
-                        <label class="flex items-center p-4 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-orange-500 transition">
-                            <input type="radio" name="payment_method" value="bank_transfer" checked class="mr-3 w-5 h-5 text-orange-500">
-                            <div class="flex-1">
-                                <div class="font-bold text-neutral-900">🏦 Transfer Bank</div>
-                                <div class="text-sm text-neutral-500">BCA, BNI, Mandiri, BRI</div>
-                            </div>
-                        </label>
-
-                        <!-- E-Wallet -->
-                        <label class="flex items-center p-4 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-orange-500 transition">
-                            <input type="radio" name="payment_method" value="e_wallet" class="mr-3 w-5 h-5 text-orange-500">
-                            <div class="flex-1">
-                                <div class="font-bold text-neutral-900">📱 E-Wallet</div>
-                                <div class="text-sm text-neutral-500">GoPay, OVO, Dana, ShopeePay</div>
-                            </div>
-                        </label>
-
-                        <!-- COD -->
-                        <label class="flex items-center p-4 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-orange-500 transition">
-                            <input type="radio" name="payment_method" value="cod" class="mr-3 w-5 h-5 text-orange-500">
-                            <div class="flex-1">
-                                <div class="font-bold text-neutral-900">💵 Bayar di Tempat (COD)</div>
-                                <div class="text-sm text-neutral-500">Bayar saat barang diterima</div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Order Summary -->
-            <div class="lg:col-span-1">
-                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-20">
-                    <h2 class="text-xl font-bold mb-4">Ringkasan</h2>
                     
                     <div class="space-y-2 mb-4">
                         <div class="flex justify-between">
