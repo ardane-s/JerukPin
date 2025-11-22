@@ -20,7 +20,7 @@
                     <div class="relative">
                         <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-orange-200 shadow-lg">
                             <img id="avatar-preview" 
-                                src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&color=fff&background=f97316&size=128' }}" 
+                                src="{{ (isset(auth()->user()->avatar) && auth()->user()->avatar) ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&color=fff&background=f97316&size=128' }}" 
                                 alt="Avatar" 
                                 class="w-full h-full object-cover">
                         </div>

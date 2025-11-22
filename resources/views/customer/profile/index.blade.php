@@ -17,30 +17,6 @@
             <div class="bg-white rounded-xl p-6 shadow-md">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                        <span class="text-2xl">✅</span>
-                    </div>
-                    <div>
-                        <p class="text-sm text-neutral-600">Selesai</p>
-                        <p class="text-2xl font-bold text-neutral-900">{{ auth()->user()->orders()->where('status', 'delivered')->count() }}</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-xl p-6 shadow-md">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                        <span class="text-2xl">⭐</span>
-                    </div>
-                    <div>
-                        <p class="text-sm text-neutral-600">Review Diberikan</p>
-                        <p class="text-2xl font-bold text-neutral-900">{{ auth()->user()->reviews()->count() }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Actions -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <a href="{{ route('orders.index') }}" class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition group">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4">
