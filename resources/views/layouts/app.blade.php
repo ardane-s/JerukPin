@@ -185,9 +185,6 @@
                     <div class="relative kategori-dropdown-container">
                         <button class="nav-link font-medium transition hover:opacity-80 px-3 py-2 rounded flex items-center gap-1">
                             <span>Kategori</span>
-                            <svg class="w-4 h-4 transition-transform kategori-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
                         </button>
                         <div class="kategori-dropdown absolute left-0 mt-4 w-64 bg-white rounded-xl shadow-2xl border-2 border-orange-100 overflow-hidden z-50 opacity-0 invisible transform scale-95 origin-top-left transition-all duration-300">
                             <!-- Dropdown Header -->
@@ -221,14 +218,11 @@
                             <span>Promo</span>
                             @if($hasActiveFlashSales ?? false)
                                 <!-- Animated notification dot - aggressive animation -->
-                                <span class="absolute top-0 right-0 flex h-2.5 w-2.5">
+                                <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
                                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-90" style="animation-duration: 0.75s;"></span>
                                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600 shadow-lg shadow-red-500/50"></span>
                                 </span>
                             @endif
-                            <svg class="w-4 h-4 transition-transform promo-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
                         </button>
                         <div class="promo-dropdown absolute left-0 mt-4 w-64 bg-white rounded-xl shadow-2xl border-2 border-red-100 overflow-hidden z-50 opacity-0 invisible transform scale-95 origin-top-left transition-all duration-300">
                             <!-- Dropdown Header -->
