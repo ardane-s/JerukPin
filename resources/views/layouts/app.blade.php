@@ -882,28 +882,6 @@
         }
 
 
-        // Member Account Dropdown Hover (changed from click)
-        const memberBtn = document.getElementById('member-dropdown-btn');
-        const memberDropdown = document.getElementById('member-dropdown');
-        const memberArrow = document.getElementById('member-dropdown-arrow');
-        let memberHoverTimeout;
-        
-        if (memberBtn && memberDropdown) {
-            const memberContainer = memberBtn.parentElement;
-            
-            memberContainer.addEventListener('mouseenter', function() {
-                clearTimeout(memberHoverTimeout);
-                memberDropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
-                memberDropdown.classList.add('opacity-100', 'visible', 'scale-100');
-                if (memberArrow) memberArrow.style.transform = 'rotate(180deg)';
-            });
-            
-            memberContainer.addEventListener('mouseleave', function() {
-                memberHoverTimeout = setTimeout(() => {
-                    memberDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-                    memberDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-                    if (memberArrow) memberArrow.style.transform = 'rotate(0deg)';
-                }, 200);
             });
         }
         
