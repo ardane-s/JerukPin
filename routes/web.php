@@ -87,6 +87,10 @@ Route::get('/flash-sale/{id}', [FlashSaleController::class, 'show'])->name('flas
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
+Route::get('/terms', [PageController::class, 'terms'])->name('terms');
+Route::get('/bundle-deals', [PageController::class, 'bundleDeals'])->name('bundle-deals');
+Route::get('/diskon-spesial', [PageController::class, 'specialDiscounts'])->name('special-discounts');
 
 // Cart (Public)
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
