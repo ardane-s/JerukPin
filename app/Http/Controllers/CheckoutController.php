@@ -121,16 +121,11 @@ class CheckoutController extends Controller
             // Redirect based on payment method
             if ($order->payment_method === 'cod') {
                 // COD orders go directly to order detail
-                if (auth()->check()) {
-                    return redirect()->route('orders.show', $order->order_number)
-                        ->with('success', '✅ Pesanan berhasil dibuat! Silakan siapkan uang tunai saat barang tiba.');
-                } else {
-                    return redirect()->route('orders.show', $order->order_number)
-                        ->with('success', '✅ Pesanan berhasil dibuat! Silakan siapkan uang tunai saat barang tiba.');
-                }
+                return redirect()->route('orders.show', $order->order_number)
+                    ->with('success', '✅ Pesanan berhasil dibuat! Silakan siapkan uang tunai saat barang tiba.');
             } else {
-                // Bank transfer / E-wallet orders go to Midtrans payment page
-                return redirect()->route('payment.show', $order->order_number)
+                // Bank transfer / E-wallet orders go to order detail page for payment upload
+                return redirect()->route('orders.show', $order->order_number)
                     ->with('success', '✅ Pesanan berhasil dibuat! Silakan lakukan pembayaran.');
             }
                 
