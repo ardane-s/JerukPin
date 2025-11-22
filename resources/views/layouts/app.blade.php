@@ -249,14 +249,14 @@
                                         </svg>
                                     @endif
                                 </a>
-                                <a href="#" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
+                                <a href="{{ route('bundle-deals') }}" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
                                     <span class="text-2xl group-hover:scale-110 transition-transform">🎁</span>
                                     <span class="font-medium group-hover:text-orange-600">Bundle Deals</span>
                                     <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                     </svg>
                                 </a>
-                                <a href="#" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 transition-all duration-200 border-l-4 border-transparent hover:border-yellow-500">
+                                <a href="{{ route('special-discounts') }}" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 transition-all duration-200 border-l-4 border-transparent hover:border-yellow-500">
                                     <span class="text-2xl group-hover:scale-110 transition-transform">🏷️</span>
                                     <span class="font-medium group-hover:text-yellow-600">Diskon Spesial</span>
                                     <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -401,22 +401,28 @@
                                     
                                     <!-- Menu Items -->
                                     <div class="py-2">
-                                        <a href="#" class="group flex items-center gap-3 px-5 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
-                                            <span class="text-2xl group-hover:scale-110 transition-transform">👤</span>
+                                        <a href="{{ route('profile.index') }}" class="group flex items-center gap-3 px-5 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
+                                            <svg class="w-5 h-5 text-neutral-400 group-hover:text-orange-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                            </svg>
                                             <span class="font-medium group-hover:text-orange-600">Akun Saya</span>
                                             <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                             </svg>
                                         </a>
                                         <a href="{{ route('orders.index') }}" class="group flex items-center gap-3 px-5 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
-                                            <span class="text-2xl group-hover:scale-110 transition-transform">📦</span>
+                                            <svg class="w-5 h-5 text-neutral-400 group-hover:text-orange-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                            </svg>
                                             <span class="font-medium group-hover:text-orange-600">Riwayat Pesanan</span>
                                             <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                             </svg>
                                         </a>
                                         <a href="{{ route('wishlist.index') }}" class="group flex items-center gap-3 px-5 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
-                                            <span class="text-2xl group-hover:scale-110 transition-transform">💝</span>
+                                            <svg class="w-5 h-5 text-neutral-400 group-hover:text-orange-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                            </svg>
                                             <div class="flex-1 flex items-center justify-between">
                                                 <span class="font-medium group-hover:text-orange-600">Wishlist</span>
                                                 @php
@@ -654,10 +660,10 @@
                                         <a href="{{ route('flash-sales.index') }}" class="block px-8 py-2.5 text-sm text-neutral-600 hover:bg-red-50 hover:text-red-700 transition-colors">
                                             🔥 Flash Sale
                                         </a>
-                                        <a href="#" class="block px-8 py-2.5 text-sm text-neutral-600 hover:bg-orange-50 hover:text-orange-700 transition-colors">
+                                        <a href="{{ route('bundle-deals') }}" class="block px-8 py-2.5 text-sm text-neutral-600 hover:bg-orange-50 hover:text-orange-700 transition-colors">
                                             🎁 Bundle Deals
                                         </a>
-                                        <a href="#" class="block px-8 py-2.5 text-sm text-neutral-600 hover:bg-yellow-50 hover:text-yellow-700 transition-colors">
+                                        <a href="{{ route('special-discounts') }}" class="block px-8 py-2.5 text-sm text-neutral-600 hover:bg-yellow-50 hover:text-yellow-700 transition-colors">
                                             🏷️ Diskon Spesial
                                         </a>
                                     </div>
