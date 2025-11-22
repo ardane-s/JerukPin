@@ -82,6 +82,58 @@
                                 <h3 class="font-bold">{{ $item->productVariant->product->name }}</h3>
                                 <p class="text-sm text-neutral-600">{{ $item->productVariant->variant_name }}</p>
                                 <p class="text-sm text-neutral-600">Qty: {{ $item->quantity }}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Payment Method Selection -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-bold mb-4">💳 Metode Pembayaran</h2>
+                    
+                    @php
+                        $paymentMethods = \App\Models\PaymentMethod::active()->ordered()->get();
+                        $groupedMethods = $paymentMethods->groupBy('type');
+                        $firstMethod = true;
+                    @endphp
+                    
+                    @if($paymentMethods->count() > 0)
+                        <div class="space-y-3">
+                            @foreach($groupedMethods as $type => $methods)
+                                <label class="flex items-center p-4 border-2 border-neutral-200 rounded-lg cursor-pointer hover:border-orange-500 transition">
+                                    <input type="radio" name="payment_method" value="{{ $type }}" {{ $firstMethod ? 'checked' : '' }} class="mr-3 w-5 h-5 text-orange-500">
+                                    <div class="flex-1">
+                                        @if($type === 'bank_transfer')
+                                            <div class="font-bold text-neutral-900">💳 Transfer Bank</div>
+                                            <div class="text-sm text-neutral-500">{{ $methods->pluck('method_name')->join(', ') }}</div>
+                                        @elseif($type === 'e_wallet')
+                                            <div class="font-bold text-neutral-900">📱 E-Wallet / QRIS</div>
+                                            <div class="text-sm text-neutral-500">{{ $methods->pluck('method_name')->join(', ') }}</div>
+                                        @elseif($type === 'cod')
+                                            <div class="font-bold text-neutral-900">💵 Bayar di Tempat (COD)</div>
+                                            <div class="text-sm text-neutral-500">Bayar saat barang diterima</div>
+                                        @endif
+                                    </div>
+                                </label>
+                                @php $firstMethod = false; @endphp
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <p class="text-yellow-800 font-bold">⚠️ Tidak ada metode pembayaran tersedia</p>
+                            <p class="text-sm text-yellow-700">Hubungi admin untuk informasi lebih lanjut.</p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-20">
+                    <h2 class="text-xl font-bold mb-4">Ringkasan</h2>
                     
                     <div class="space-y-2 mb-4">
                         <div class="flex justify-between">
