@@ -389,18 +389,12 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                             </svg>
                                             <span class="font-medium group-hover:text-orange-600">Akun Saya</span>
-                                            <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                            </svg>
                                         </a>
                                         <a href="{{ route('orders.index') }}" class="group flex items-center gap-3 px-5 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
                                             <svg class="w-5 h-5 text-neutral-400 group-hover:text-orange-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                                             </svg>
                                             <span class="font-medium group-hover:text-orange-600">Riwayat Pesanan</span>
-                                            <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                            </svg>
                                         </a>
                                         <a href="{{ route('wishlist.index') }}" class="group flex items-center gap-3 px-5 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
                                             <svg class="w-5 h-5 text-neutral-400 group-hover:text-orange-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -415,16 +409,10 @@
                                                     <span class="bg-red-500 text-white text-xs rounded-full px-2 py-0.5 font-bold">{{ $wishlistCount }}</span>
                                                 @endif
                                             </div>
-                                            <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                            </svg>
                                         </a>
                                         <a href="#" class="group flex items-center gap-3 px-5 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
                                             <span class="text-2xl group-hover:scale-110 transition-transform">⚙️</span>
                                             <span class="font-medium group-hover:text-orange-600">Pengaturan</span>
-                                            <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                            </svg>
                                         </a>
                                     </div>
                                     
@@ -435,9 +423,6 @@
                                             <button type="submit" class="w-full group flex items-center gap-3 px-5 py-3 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium">
                                                 <span class="text-2xl group-hover:scale-110 transition-transform">🚪</span>
                                                 <span>Logout</span>
-                                                <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                                                </svg>
                                             </button>
                                         </form>
                                     </div>
@@ -572,14 +557,15 @@
                                     <span class="text-xs font-bold text-orange-600 uppercase tracking-wider">Navigasi</span>
                                 </div>
                                 
-                                <a href="{{ route('home') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 rounded-lg transition-all border-b border-neutral-100">
+                                <!-- Only show on mobile - hidden on desktop -->
+                                <a href="{{ route('home') }}" class="md:hidden flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 rounded-lg transition-all border-b border-neutral-100">
                                     <div class="w-8 h-8 flex items-center justify-center bg-orange-100 rounded-lg">
                                         <span class="text-lg">🏠</span>
                                     </div>
                                     <span class="font-medium flex-1">Beranda</span>
                                 </a>
                                 
-                                <a href="{{ route('products.index') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 rounded-lg transition-all border-b border-neutral-100">
+                                <a href="{{ route('products.index') }}" class="md:hidden flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 rounded-lg transition-all border-b border-neutral-100">
                                     <div class="w-8 h-8 flex items-center justify-center bg-orange-100 rounded-lg">
                                         <span class="text-lg">🍊</span>
                                     </div>
