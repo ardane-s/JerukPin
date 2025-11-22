@@ -7,7 +7,7 @@
     <h1 class="text-3xl font-heading font-bold text-neutral-900 mb-6">💝 Wishlist Saya</h1>
 
     @if($wishlists->count() > 0)
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             @foreach($wishlists as $wishlist)
                 @php
                     $product = $wishlist->product;
