@@ -8,11 +8,17 @@
         <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
             <!-- Profile Header -->
             <div class="text-center mb-8">
-                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-orange-200 shadow-lg mb-4">
-                    <img src="{{ (isset(auth()->user()->avatar) && auth()->user()->avatar) ? asset('storage/' . auth()->user()->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&color=fff&background=f97316&size=128' }}" 
-                         alt="{{ auth()->user()->name }}" 
-                         class="w-full h-full object-cover">
-                </div>
+                @if(isset(auth()->user()->avatar) && auth()->user()->avatar)
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-orange-200 shadow-lg mb-4">
+                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}" 
+                             alt="{{ auth()->user()->name }}" 
+                             class="w-full h-full object-cover">
+                    </div>
+                @else
+                    <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-orange-500 to-green-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg mb-4 border-4 border-orange-200">
+                        {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
+                    </div>
+                @endif
                 <h1 class="text-3xl font-bold text-neutral-900 mb-2">{{ auth()->user()->name }}</h1>
                 <p class="text-neutral-600">{{ auth()->user()->email }}</p>
                 <p class="text-sm text-neutral-500 mt-1">Bergabung sejak {{ auth()->user()->created_at->format('F Y') }}</p>
