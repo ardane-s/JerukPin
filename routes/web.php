@@ -19,6 +19,41 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminReviewController;
 use Illuminate\Support\Facades\Route;
 
+// TEMPORARY: Database diagnostic and seeder - DELETE AFTER USE
+Route::get('/check-and-seed', function () {
+    try {
+        $userCount = \App\Models\User::count();
+        $productCount = \App\Models\Product::count();
+        $categoryCount = \App\Models\Category::count();
+        
+        $status = "<h2>Current Database Status:</h2>";
+        $status .= "<p>Users: {$userCount}</p>";
+        $status .= "<p>Products: {$productCount}</p>";
+        $status .= "<p>Categories: {$categoryCount}</p>";
+        
+        if ($productCount == 0) {
+            $status .= "<h3>Running seeder...</h3>";
+            \Artisan::call('db:seed', ['--class' => 'RealJerukPinSeeder', '--force' => true]);
+            $output = \Artisan::output();
+            $status .= "<pre>{$output}</pre>";
+            
+            $userCount = \App\Models\User::count();
+            $productCount = \App\Models\Product::count();
+            $categoryCount = \App\Models\Category::count();
+            
+            $status .= "<h3>After Seeding:</h3>";
+            $status .= "<p>Users: {$userCount}</p>";
+            $status .= "<p>Products: {$productCount}</p>";
+            $status .= "<p>Categories: {$categoryCount}</p>";
+        }
+        
+        $status .= '<br><a href="/">Go to Homepage</a>';
+        return $status;
+    } catch (\Exception $e) {
+        return "<h1>Error:</h1><pre>" . $e->getMessage() . "\n\n" . $e->getTraceAsString() . "</pre>";
+    }
+});
+
 // Customer Routes (Public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
