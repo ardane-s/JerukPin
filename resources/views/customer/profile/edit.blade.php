@@ -15,34 +15,12 @@
                 @csrf
                 @method('PUT')
 
-                <!-- Avatar Upload -->
+                <!-- Profile Avatar - Display Only -->
                 <div class="flex flex-col items-center mb-6">
-                    <div class="relative">
-                        @if(isset(auth()->user()->avatar) && auth()->user()->avatar)
-                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-orange-200 shadow-lg">
-                                <img id="avatar-preview" 
-                                    src="{{ asset('storage/' . auth()->user()->avatar) }}" 
-                                    alt="Avatar" 
-                                    class="w-full h-full object-cover">
-                            </div>
-                        @else
-                            <div id="avatar-preview-container" class="w-32 h-32 rounded-full bg-gradient-to-br from-orange-500 to-green-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg border-4 border-orange-200">
-                                {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
-                            </div>
-                            <img id="avatar-preview" src="" alt="Avatar" class="hidden w-32 h-32 rounded-full object-cover border-4 border-orange-200 shadow-lg">
-                        @endif
-                        <label for="avatar" class="absolute bottom-0 right-0 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-orange-600 transition shadow-lg">
-                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </label>
+                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-orange-500 to-green-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg border-4 border-orange-200">
+                        {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
                     </div>
-                    <input type="file" id="avatar" name="avatar" accept="image/*" class="hidden" onchange="previewAvatar(event)">
-                    <p class="mt-2 text-sm text-neutral-600">Klik ikon kamera untuk upload foto</p>
-                    @error('avatar')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
+                    <p class="mt-3 text-sm text-neutral-500">Avatar Anda</p>
                 </div>
 
                 <!-- Name -->
@@ -89,27 +67,4 @@
         </div>
     </div>
 </div>
-
-<script>
-function previewAvatar(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const preview = document.getElementById('avatar-preview');
-            const container = document.getElementById('avatar-preview-container');
-            
-            // Hide gradient placeholder if it exists
-            if (container) {
-                container.style.display = 'none';
-            }
-            
-            // Show and update image
-            preview.src = e.target.result;
-            preview.classList.remove('hidden');
-        }
-        reader.readAsDataURL(file);
-    }
-}
-</script>
 @endsection

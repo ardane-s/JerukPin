@@ -375,16 +375,10 @@
                             {{-- User Profile Dropdown --}}
                             <div class="relative user-dropdown-container">
                                 <button class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-all">
-                                    {{-- Avatar or Initial --}}
-                                    @if(isset(auth()->user()->avatar) && auth()->user()->avatar)
-                                        <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-white/30">
-                                            <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Avatar" class="w-full h-full object-cover">
-                                        </div>
-                                    @else
-                                        <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold text-white border-2 border-white/30">
-                                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                                        </div>
-                                    @endif
+                                    {{-- Gradient Initial Avatar --}}
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-green-400 flex items-center justify-center text-sm font-bold text-white border-2 border-white/30 shadow-md">
+                                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                    </div>
                                     <span class="hidden sm:inline text-sm font-medium text-white">{{ Str::limit(auth()->user()->name, 10) }}</span>
                                     <svg class="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -395,15 +389,9 @@
                                 <div class="user-dropdown absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-neutral-200 overflow-hidden opacity-0 invisible transform scale-95 origin-top-right transition-all duration-200 z-50">
                                     <div class="p-4 bg-gradient-to-r from-orange-500 to-orange-600">
                                         <div class="flex items-center gap-3">
-                                            @if(isset(auth()->user()->avatar) && auth()->user()->avatar)
-                                                <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white">
-                                                    <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Avatar" class="w-full h-full object-cover">
-                                                </div>
-                                            @else
-                                                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl font-bold text-white border-2 border-white">
-                                                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                                                </div>
-                                            @endif
+                                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-300 to-green-300 flex items-center justify-center text-2xl font-bold text-white border-2 border-white shadow-lg">
+                                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                            </div>
                                             <div class="flex-1 min-w-0">
                                                 <p class="text-sm font-bold text-white truncate">{{ auth()->user()->name }}</p>
                                                 <p class="text-xs text-white/80 truncate">{{ auth()->user()->email }}</p>
