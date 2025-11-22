@@ -72,23 +72,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ACTIVE CAMPAIGN PRODUCTS - HORIZONTAL SCROLL (HIDDEN SCROLLBAR) -->
-        <div class="mb-12">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-2xl font-bold text-neutral-800">Produk Flash Sale</h3>
-                <span class="text-sm text-neutral-500">Geser untuk melihat lebih banyak →</span>
-            </div>
-            
-            <div class="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
-                <div class="flex gap-4" style="width: max-content;">
-                    @foreach($activeCampaign->flashSales as $sale)
-                        @php
-                            $product = $sale->productVariant->product;
-                            $variant = $sale->productVariant;
                             $image = $product->images->first();
                         @endphp
                         
