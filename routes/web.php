@@ -18,6 +18,49 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminReviewController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+// Emergency Database Seeder (Public - Remove after use!)
+Route::get('/seed-now-emergency', function() {
+    try {
+        // Run the seeder
+        Artisan::call('db:seed', [
+            '--class' => 'RealJerukPinSeeder',
+            '--force' => true
+        ]);
+        
+        $output = Artisan::output();
+        
+        // Check admin was created
+        $admin = \App\Models\User::where('email', 'jerukpin@gmail.com')->first();
+        $productCount = \App\Models\Product::count();
+        
+        return '<div style="font-family: Arial; padding: 40px; max-width: 600px; margin: 0 auto;">
+            <h1 style="color: #FF8A00;">✅ Database Seeded Successfully!</h1>
+            <div style="background: #f0fdf4; border: 2px solid #10b981; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h2 style="margin-top: 0;">Admin Account Created:</h2>
+                <p><strong>Email:</strong> ' . ($admin ? $admin->email : 'NOT FOUND!') . '</p>
+                <p><strong>Role:</strong> ' . ($admin ? $admin->role : 'N/A') . '</p>
+                <p><strong>Products:</strong> ' . $productCount . ' created</p>
+            </div>
+            <div style="background: #fef2f2; border: 2px solid #ef4444; padding: 20px; border-radius: 10px;">
+                <h3 style="margin-top: 0;">⚠️ IMPORTANT</h3>
+                <p>Remove this route from <code>routes/web.php</code> after use!</p>
+                <p>Delete lines containing <code>/seed-now-emergency</code></p>
+            </div>
+            <h3>Artisan Output:</h3>
+            <pre style="background: #f3f4f6; padding: 15px; border-radius: 5px; overflow-x: auto;">' . htmlspecialchars($output) . '</pre>
+            <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #FF8A00; color: white; text-decoration: none; border-radius: 5px;">Go to Homepage</a>
+        </div>';
+        
+    } catch (\Exception $e) {
+        return '<div style="font-family: Arial; padding: 40px; color: red;">
+            <h1>❌ Error!</h1>
+            <p>' . $e->getMessage() . '</p>
+            <pre>' . $e->getTraceAsString() . '</pre>
+        </div>';
+    }
+});
 
 // Database Manager (Admin Only - Protected)
 Route::get('/admin/database-manager', [App\Http\Controllers\Admin\DatabaseManagerController::class, 'index'])
