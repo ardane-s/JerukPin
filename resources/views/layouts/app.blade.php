@@ -201,9 +201,6 @@
                                     <a href="{{ route('category.show', $category->slug) }}" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
                                         <span class="text-2xl group-hover:scale-110 transition-transform">🍊</span>
                                         <span class="font-medium group-hover:text-orange-600">{{ $category->name }}</span>
-                                        <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                        </svg>
                                     </a>
                                 @empty
                                     <div class="px-4 py-3 text-sm text-neutral-500 text-center">Belum ada kategori</div>
@@ -232,30 +229,20 @@
                             
                             <!-- Dropdown Items -->
                             <div class="py-2">
-                                <a href="{{ route('flash-sales.index') }}" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 transition-all duration-200 border-l-4 border-transparent hover:border-red-500 relative">
+                                <a href="{{ route('flash-sales.index') }}" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 transition-all duration-200 border-l-4 border-transparent hover:border-red-500">
                                     <span class="text-2xl group-hover:scale-110 transition-transform">🔥</span>
-                                    <span class="font-medium group-hover:text-red-600">Flash Sale</span>
-                                    @if($hasActiveFlashSales ?? false)
-                                        <span class="ml-auto bg-red-500 text-white text-xs rounded-full px-2 py-0.5 animate-pulse font-bold">Live</span>
-                                    @else
-                                        <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                        </svg>
-                                    @endif
+                                    <div class="flex-1">
+                                        <span class="font-bold group-hover:text-red-600 block">Flash Sale</span>
+                                        <span class="text-xs text-red-500">Diskon hingga 50%!</span>
+                                    </div>
                                 </a>
                                 <a href="{{ route('bundle-deals') }}" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200 border-l-4 border-transparent hover:border-orange-500">
                                     <span class="text-2xl group-hover:scale-110 transition-transform">🎁</span>
                                     <span class="font-medium group-hover:text-orange-600">Bundle Deals</span>
-                                    <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
                                 </a>
                                 <a href="{{ route('special-discounts') }}" class="group flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 transition-all duration-200 border-l-4 border-transparent hover:border-yellow-500">
                                     <span class="text-2xl group-hover:scale-110 transition-transform">🏷️</span>
                                     <span class="font-medium group-hover:text-yellow-600">Diskon Spesial</span>
-                                    <svg class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
                                 </a>
                             </div>
                         </div>
