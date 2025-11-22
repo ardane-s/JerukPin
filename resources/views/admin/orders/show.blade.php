@@ -36,7 +36,7 @@
                     <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>Selesai</option>
                     <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
                 </select>
-                <button type="submit" class="px-6 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600">Update Status</button>
+                <button type="submit" class="px-6 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg hover:from-orange-600 hover:to-orange-700 font-bold">Update Status</button>
             </div>
         </form>
     </div>
