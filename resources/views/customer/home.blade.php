@@ -329,8 +329,15 @@
             @foreach($categories as $category)
                 <a href="{{ route('category.show', $category->slug) }}" 
                    class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <div class="aspect-video bg-gradient-to-br from-orange-100 via-orange-50 to-green-50 flex items-center justify-center">
-                        <div class="text-8xl group-hover:scale-110 transition-transform duration-300">🍊</div>
+                    <div class="aspect-square bg-gradient-to-br from-orange-100 via-orange-50 to-green-50 flex items-center justify-center overflow-hidden">
+                        @if($category->image)
+                            <img src="{{ asset('storage/' . $category->image) }}" 
+                                 alt="{{ $category->name }}" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                 onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-8xl group-hover:scale-110 transition-transform duration-300\'>🍊</div>';">
+                        @else
+                            <div class="text-8xl group-hover:scale-110 transition-transform duration-300">🍊</div>
+                        @endif
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end p-6">
                         <div class="text-white">
