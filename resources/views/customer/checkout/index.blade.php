@@ -175,7 +175,7 @@ document.querySelectorAll('input[name="use_saved_address"]').forEach(radio => {
 });
 
 document.querySelector('input[name="shipping_cost"]').addEventListener('input', function() {
-    const subtotal = {{ $total }};
+    const subtotal = {{ $subtotal }};
     const shipping = parseInt(this.value) || 0;
     const total = subtotal + shipping;
     document.getElementById('total-amount').textContent = total.toLocaleString('id-ID');
