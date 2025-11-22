@@ -21,6 +21,21 @@ class RealJerukPinSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         ProductImage::truncate();
         ProductVariant::truncate();
+        Product::truncate();
+        Category::truncate();
+        DB::table('cart_items')->truncate();
+        DB::table('order_items')->truncate();
+        DB::table('orders')->truncate();
+        DB::table('flash_sales')->truncate();
+        PaymentMethod::truncate();
+        Setting::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        // Ensure admin exists
+        User::firstOrCreate(
+            ['email' => 'jerukpin@gmail.com'],
+            [
+                'name' => 'Admin JerukPin',
                 'phone' => '081234567890',
                 'password' => Hash::make('Jerukjerukjerukpin!'),
                 'role' => 'super_admin',
