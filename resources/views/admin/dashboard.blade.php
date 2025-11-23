@@ -1,22 +1,4 @@
-﻿@extends('admin.layouts.app')
-                <p class="text-3xl font-bold text-neutral-900">{{ $stats['total_products'] }}</p>
-                <a href="{{ route('admin.products.index') }}" class="text-xs text-orange-600 hover:text-orange-700 font-medium mt-2 inline-block">
-                    Lihat semua →
-                </a>
-            </div>
-            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
-                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                </svg>
-            </div>
-        </div>
-    </div>
-
-    <!-- Categories Card -->
-    <div class="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 hover:shadow-md transition">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-sm font-medium text-neutral-600 mb-1">Total Kategori</p>
+﻿                <p class="text-sm font-medium text-neutral-600 mb-1">Total Kategori</p>
                 <p class="text-3xl font-bold text-neutral-900">{{ $stats['total_categories'] }}</p>
                 <a href="{{ route('admin.categories.index') }}" class="text-xs text-orange-600 hover:text-orange-700 font-medium mt-2 inline-block">
                     Lihat semua →
