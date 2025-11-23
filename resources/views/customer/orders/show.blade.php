@@ -251,12 +251,9 @@
                             <h3 class="font-bold text-blue-900 text-lg mb-2">Pesanan Sedang Dikirim</h3>
                             <p class="text-sm text-blue-800 mb-4">Paket Anda sedang dalam perjalanan. Silakan konfirmasi jika sudah diterima.</p>
                             
-                            <form action="{{ route('orders.complete', $order->order_number) }}" method="POST" onsubmit="return confirm('Apakah Anda sudah menerima pesanan ini?')">
-                                @csrf
-                                <button type="submit" class="w-full sm:w-auto bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-3 rounded-lg font-bold shadow-md hover:shadow-lg transition-all transform active:scale-95">
-                                    ✅ Terima Pesanan
-                                </button>
-                            </form>
+                            <button type="button" onclick="showCompleteModal()" class="w-full sm:w-auto bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-3 rounded-lg font-bold shadow-md hover:shadow-lg transition-all transform active:scale-95">
+                                ✅ Terima Pesanan
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -436,6 +433,33 @@
     @csrf
 </form>
 
+<!-- Complete Order Modal -->
+<div id="completeModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl">
+        <div class="text-center mb-4">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-4xl">✅</span>
+            </div>
+            <h3 class="text-2xl font-bold text-neutral-900 mb-2">Terima Pesanan?</h3>
+            <p class="text-neutral-600">Apakah Anda sudah menerima pesanan ini?</p>
+        </div>
+        
+        <div class="flex gap-3">
+            <button type="button" onclick="hideCompleteModal()" class="flex-1 px-4 py-3 border-2 border-neutral-300 rounded-lg hover:bg-neutral-50 font-bold transition">
+                Belum
+            </button>
+            <button type="button" onclick="confirmComplete()" class="flex-1 px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-bold transition shadow-md hover:shadow-lg">
+                Ya, Sudah Terima
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden form for complete submission -->
+<form id="completeForm" action="{{ route('orders.complete', $order->order_number) }}" method="POST" class="hidden">
+    @csrf
+</form>
+
 <!-- Review Modal -->
 @auth
 <div id="reviewModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
@@ -521,6 +545,40 @@ if (cancelModal) {
     cancelModal.addEventListener('click', function(e) {
         if (e.target === this) {
             hideCancelModal();
+        }
+    });
+}
+
+// Complete Modal Functions
+function showCompleteModal() {
+    const modal = document.getElementById('completeModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+function hideCompleteModal() {
+    const modal = document.getElementById('completeModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+function confirmComplete() {
+    const form = document.getElementById('completeForm');
+    if (form) {
+        form.submit();
+    }
+}
+
+// Close complete modal on outside click
+const completeModal = document.getElementById('completeModal');
+if (completeModal) {
+    completeModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            hideCompleteModal();
         }
     });
 }
