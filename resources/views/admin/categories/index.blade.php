@@ -12,29 +12,6 @@
         </svg>
         Tambah Kategori
     </a>
-</div>
-
-<div class="bg-white rounded-xl shadow-sm overflow-hidden border border-neutral-200">
-    <table class="min-w-full divide-y divide-neutral-200">
-        <thead class="bg-neutral-50">
-            <tr>
-                <th class="px-6 py-3.5 text-left text-xs font-semibold text-neutral-700 uppercase tracking-wider">Nama</th>
-                <th class="px-6 py-3.5 text-left text-xs font-semibold text-neutral-700 uppercase tracking-wider">Slug</th>
-                <th class="px-6 py-3.5 text-left text-xs font-semibold text-neutral-700 uppercase tracking-wider">Jumlah Produk</th>
-                <th class="px-6 py-3.5 text-left text-xs font-semibold text-neutral-700 uppercase tracking-wider">Status</th>
-                <th class="px-6 py-3.5 text-right text-xs font-semibold text-neutral-700 uppercase tracking-wider">Aksi</th>
-            </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-neutral-200">
-            @forelse($categories as $category)
-                <tr class="hover:bg-neutral-50 transition">
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-semibold text-neutral-900">{{ $category->name }}</div>
-                        @if($category->description)
-                            <div class="text-sm text-neutral-500 mt-1">{{ Str::limit($category->description, 50) }}</div>
-                        @endif
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
                         <code class="text-xs bg-neutral-100 px-2.5 py-1 rounded text-neutral-600 font-mono">{{ $category->slug }}</code>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
