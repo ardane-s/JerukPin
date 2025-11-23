@@ -86,12 +86,15 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <!-- Payment Proof Image -->
-                <div class="order-2 lg:order-1">
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden border-2 border-neutral-200">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border-2 border-neutral-200 relative">
+                        <div class="absolute inset-0 flex items-center justify-center bg-orange-50">
+                            <span class="text-6xl select-none">🍊</span>
+                        </div>
                         <img src="{{ Storage::url($order->payment->paymentProof->proof_image_path) }}" 
                              alt="Bukti Pembayaran" 
-                             class="w-full h-auto cursor-pointer hover:opacity-90 transition"
-                             onclick="window.open(this.src, '_blank')">
+                             class="w-full h-auto cursor-pointer hover:opacity-90 transition relative z-10"
+                             onclick="window.open(this.src, '_blank')"
+                             onerror="this.style.display='none'">
                     </div>
                     <p class="text-xs text-center text-neutral-500 mt-2">Klik gambar untuk memperbesar</p>
                 </div>

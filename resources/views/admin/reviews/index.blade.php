@@ -48,15 +48,15 @@
             <tr class="border-b border-neutral-100 hover:bg-neutral-50">
                 <td class="px-6 py-4">
                     <div class="flex items-center gap-3">
-                        @if($review->product && $review->product->images->count() > 0)
-                            <img src="{{ Storage::url($review->product->images->first()->image_path) }}" 
-                                 alt="{{ $review->product->name }}" 
-                                 class="w-12 h-12 rounded object-cover">
-                        @else
-                            <div class="w-12 h-12 rounded bg-orange-50 flex items-center justify-center">
-                                <span class="text-2xl">🍊</span>
-                            </div>
-                        @endif
+                        <div class="w-12 h-12 rounded bg-orange-100 flex items-center justify-center relative overflow-hidden">
+                            <span class="text-2xl absolute select-none">🍊</span>
+                            @if($review->product && $review->product->images->count() > 0)
+                                <img src="{{ Storage::url($review->product->images->first()->image_path) }}" 
+                                     alt="{{ $review->product->name }}" 
+                                     class="w-full h-full object-cover relative z-10"
+                                     onerror="this.style.display='none'">
+                            @endif
+                        </div>
                         <div>
                             <p class="font-medium text-neutral-900">{{ $review->product->name ?? 'Produk dihapus' }}</p>
                         </div>

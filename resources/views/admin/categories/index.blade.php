@@ -30,15 +30,15 @@
             @forelse($categories as $category)
                 <tr class="hover:bg-neutral-50 transition">
                     <td class="px-6 py-4 whitespace-nowrap">
-                        @if($category->image)
-                            <img src="{{ Storage::url($category->image) }}" 
-                                 alt="{{ $category->name }}" 
-                                 class="w-12 h-12 rounded object-cover">
-                        @else
-                            <div class="w-12 h-12 rounded bg-orange-50 flex items-center justify-center">
-                                <span class="text-2xl">🍊</span>
-                            </div>
-                        @endif
+                        <div class="w-12 h-12 rounded bg-orange-100 flex items-center justify-center relative overflow-hidden">
+                            <span class="text-2xl absolute select-none">🍊</span>
+                            @if($category->image)
+                                <img src="{{ Storage::url($category->image) }}" 
+                                     alt="{{ $category->name }}" 
+                                     class="w-full h-full object-cover relative z-10"
+                                     onerror="this.style.display='none'">
+                            @endif
+                        </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm font-semibold text-neutral-900">{{ $category->name }}</div>
