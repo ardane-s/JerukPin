@@ -38,13 +38,13 @@
             <!-- Right: Large Image -->
             <div class="flex-shrink-0">
                 <div class="relative w-48 h-48 md:w-72 md:h-72 bg-white rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500 p-2">
-                    <div class="w-full h-full rounded-2xl overflow-hidden bg-orange-50 flex items-center justify-center">
+                    <div class="w-full h-full rounded-2xl overflow-hidden bg-orange-50 flex items-center justify-center relative">
+                        <span class="text-8xl absolute select-none">🍊</span>
                         @if($category->image)
                             <img src="{{ asset('storage/' . $category->image) }}" 
                                  alt="{{ $category->name }}" 
-                                 class="w-full h-full object-cover">
-                        @else
-                            <span class="text-8xl">🍊</span>
+                                 class="w-full h-full object-cover relative z-10"
+                                 onerror="this.style.display='none'">
                         @endif
                     </div>
                     <!-- Decorative Elements -->

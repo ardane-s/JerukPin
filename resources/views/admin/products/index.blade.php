@@ -31,17 +31,15 @@
                 <tr class="hover:bg-neutral-50 transition">
                     <td class="px-6 py-4">
                         <div class="flex items-center gap-3">
-                            @if($product->images->first())
-                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
-                                     alt="{{ $product->name }}" 
-                                     class="w-12 h-12 rounded-lg object-cover border border-neutral-200">
-                            @else
-                                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                                    </svg>
-                                </div>
-                            @endif
+                            <div class="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center relative overflow-hidden border border-neutral-200">
+                                <span class="text-2xl absolute select-none">🍊</span>
+                                @if($product->images->first())
+                                    <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
+                                         alt="{{ $product->name }}" 
+                                         class="w-full h-full object-cover relative z-10"
+                                         onerror="this.style.display='none'">
+                                @endif
+                            </div>
                             <div>
                                 <div class="text-sm font-semibold text-neutral-900">{{ $product->name }}</div>
                                 @if($product->isBestSeller())
