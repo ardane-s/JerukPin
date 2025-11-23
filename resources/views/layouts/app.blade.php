@@ -363,8 +363,9 @@
                                     @endif
                                 </div>
                             </div>
-                            
-                            {{-- User Profile Dropdown --}}
+                        @endif
+                        
+                        {{-- User Profile Dropdown --}}
                             <div class="relative user-dropdown-container">
                                 <button class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-all">
                                     {{-- Gradient Initial Avatar --}}
@@ -444,7 +445,6 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
                     @else
                         {{-- Guest Cart Button - Show on desktop, hidden on mobile (in hamburger menu) --}}
                         <div class="hidden md:block cart-dropdown-container relative">
