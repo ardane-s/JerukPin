@@ -35,15 +35,19 @@
                     <div class="bg-white rounded-2xl shadow-lg border-2 border-orange-100 p-4 sm:p-6 hover:shadow-xl transition">
                         <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
                             <!-- Product Image -->
-                            @if($item->productVariant->product->images->first())
-                                <img src="{{ Storage::url($item->productVariant->product->images->first()->image_path) }}" 
-                                     alt="{{ $item->productVariant->product->name }}" 
-                                     class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl border-2 border-orange-200 mx-auto sm:mx-0"
-                                     onerror="this.onerror=null; this.src=''; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl flex items-center justify-center text-4xl sm:text-5xl border-2 border-orange-200 mx-auto sm:mx-0" style="display:none;">🍊</div>
-                            @else
-                                <div class="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl flex items-center justify-center text-4xl sm:text-5xl border-2 border-orange-200 mx-auto sm:mx-0">🍊</div>
-                            @endif
+                            <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-xl border-2 border-orange-200 mx-auto sm:mx-0 relative overflow-hidden flex-shrink-0 bg-orange-50">
+                                <!-- Placeholder -->
+                                <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-yellow-100">
+                                    <span class="text-4xl sm:text-5xl select-none">🍊</span>
+                                </div>
+                                <!-- Image -->
+                                @if($item->productVariant->product->images->first())
+                                    <img src="{{ Storage::url($item->productVariant->product->images->first()->image_path) }}" 
+                                         alt="{{ $item->productVariant->product->name }}" 
+                                         class="w-full h-full object-cover relative z-10"
+                                         onerror="this.style.display='none'">
+                                @endif
+                            </div>
                             
                             <!-- Product Info -->
                             <div class="flex-1 flex flex-col justify-between">

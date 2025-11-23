@@ -3,20 +3,22 @@
 <div class="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 relative">
     <x-wishlist-button :productId="$product->id" />
     <a href="{{ route('product.show', $product->slug) }}" class="block">
-        <div class="relative overflow-hidden rounded-t-xl aspect-square" id="product-image-{{ $product->id }}">
-            @if($product->images->first() && $product->images->first()->image_path !== 'products/placeholder-orange.jpg')
+        <div class="relative overflow-hidden rounded-t-xl aspect-square bg-orange-50" id="product-image-{{ $product->id }}">
+            <!-- Orange Placeholder (Always present behind image) -->
+            <div class="absolute inset-0 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                <span class="text-6xl sm:text-7xl md:text-9xl select-none">🍊</span>
+            </div>
+            
+            <!-- Product Image (Overlay) -->
+            @if($product->images->first())
                 <img src="{{ Storage::url($product->images->first()->image_path) }}" 
                      alt="{{ $product->name }}" 
-                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                     onerror="this.style.display='none'; document.getElementById('placeholder-product-{{ $product->id }}').style.display='flex';">
-                <!-- Orange Placeholder (hidden by default, shown on error) -->
-                <div id="placeholder-product-{{ $product->id }}" class="absolute inset-0 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500 text-6xl sm:text-7xl md:text-9xl" style="display: none;">🍊</div>
-            @else
-                <!-- Orange Placeholder matching the design -->
-                <div class="absolute inset-0 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500 text-6xl sm:text-7xl md:text-9xl">🍊</div>
+                     class="w-full h-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-500"
+                     onerror="this.style.display='none'">
             @endif
+            
             <!-- Gradient Overlay on Hover -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
         </div>
         <div class="p-2 sm:p-3 md:p-4">
             @if($product->isBestSeller())

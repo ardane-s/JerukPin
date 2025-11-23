@@ -270,18 +270,19 @@
                     <div class="space-y-4">
                         @foreach($order->orderItems as $item)
                             <div class="flex gap-4 p-4 bg-gradient-to-r from-orange-50 to-white rounded-xl border border-orange-100 hover:shadow-md transition">
-                                @if($item->productVariant && $item->productVariant->product && $item->productVariant->product->images->first())
-                                    <div class="relative w-20 h-20 flex-shrink-0">
+                                <div class="relative w-20 h-20 flex-shrink-0 bg-orange-50 rounded-lg overflow-hidden shadow-md">
+                                    <!-- Placeholder -->
+                                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200">
+                                        <span class="text-4xl select-none">🍊</span>
+                                    </div>
+                                    <!-- Image -->
+                                    @if($item->productVariant && $item->productVariant->product && $item->productVariant->product->images->first())
                                         <img src="{{ Storage::url($item->productVariant->product->images->first()->image_path) }}" 
                                              alt="{{ $item->product_name }}" 
-                                             class="w-20 h-20 object-cover rounded-lg shadow-md"
-                                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-20 h-20 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center rounded-lg text-4xl\'>🍊</div>';">
-                                    </div>
-                                @else
-                                    <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg flex items-center justify-center text-4xl shadow-md">
-                                        🍊
-                                    </div>
-                                @endif
+                                             class="w-full h-full object-cover relative z-10"
+                                             onerror="this.style.display='none'">
+                                    @endif
+                                </div>
                                 <div class="flex-1">
                                     <h3 class="font-bold text-neutral-900">{{ $item->product_name }}</h3>
                                     <p class="text-sm text-neutral-600">{{ $item->variant_name }}</p>

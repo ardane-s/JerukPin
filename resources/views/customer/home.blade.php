@@ -149,18 +149,19 @@
                         </div>
                         
                         <a href="{{ route('product.show', $sale->productVariant->product->slug) }}" class="block">
-                            @if($sale->productVariant->product->images->first())
-                                <div class="aspect-square overflow-hidden bg-gradient-to-br from-orange-50 to-orange-100">
-                                    <img src="{{ Storage::url($sale->productVariant->product->images->first()->image_path) }}" 
-                                         alt="{{ $sale->productVariant->product->name }}"
-                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-5xl\'>🍊</div>';">
+                                <div class="aspect-square overflow-hidden bg-orange-50 relative">
+                                    <!-- Placeholder -->
+                                    <div class="absolute inset-0 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center">
+                                        <span class="text-5xl select-none">🍊</span>
+                                    </div>
+                                    <!-- Image -->
+                                    @if($sale->productVariant->product->images->first())
+                                        <img src="{{ Storage::url($sale->productVariant->product->images->first()->image_path) }}" 
+                                             alt="{{ $sale->productVariant->product->name }}"
+                                             class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-500"
+                                             onerror="this.style.display='none'">
+                                    @endif
                                 </div>
-                            @else
-                                <div class="aspect-square bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
-                                    <div class="text-5xl">🍊</div>
-                                </div>
-                            @endif
                             
                             <div class="p-2">
                                 <h3 class="font-bold text-xs text-neutral-900 mb-1 line-clamp-2">{{ $sale->productVariant->product->name }}</h3>
@@ -201,18 +202,19 @@
                     </div>
                     
                     <a href="{{ route('product.show', $sale->productVariant->product->slug) }}" class="block">
-                        @if($sale->productVariant->product->images->first())
-                            <div class="aspect-square overflow-hidden bg-gradient-to-br from-orange-50 to-orange-100">
-                                <img src="{{ Storage::url($sale->productVariant->product->images->first()->image_path) }}" 
-                                     alt="{{ $sale->productVariant->product->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-8xl\'>🍊</div>';">
+                            <div class="aspect-square overflow-hidden bg-orange-50 relative">
+                                <!-- Placeholder -->
+                                <div class="absolute inset-0 bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center">
+                                    <span class="text-8xl select-none">🍊</span>
+                                </div>
+                                <!-- Image -->
+                                @if($sale->productVariant->product->images->first())
+                                    <img src="{{ Storage::url($sale->productVariant->product->images->first()->image_path) }}" 
+                                         alt="{{ $sale->productVariant->product->name }}"
+                                         class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-500"
+                                         onerror="this.style.display='none'">
+                                @endif
                             </div>
-                        @else
-                            <div class="aspect-square bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
-                                <div class="text-8xl">🍊</div>
-                            </div>
-                        @endif
                         
                         <div class="p-4">
                             <h3 class="font-bold text-neutral-900 mb-2 line-clamp-2">{{ $sale->productVariant->product->name }}</h3>
@@ -329,14 +331,17 @@
             @foreach($categories as $category)
                 <a href="{{ route('category.show', $category->slug) }}" 
                    class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <div class="aspect-square bg-gradient-to-br from-orange-100 via-orange-50 to-green-50 flex items-center justify-center overflow-hidden">
+                    <div class="aspect-square bg-orange-50 flex items-center justify-center overflow-hidden relative">
+                        <!-- Placeholder -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-100 via-orange-50 to-green-50 flex items-center justify-center">
+                            <span class="text-8xl group-hover:scale-110 transition-transform duration-300 select-none">🍊</span>
+                        </div>
+                        <!-- Image -->
                         @if($category->image)
                             <img src="{{ Storage::url($category->image) }}" 
                                  alt="{{ $category->name }}" 
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                 onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-8xl group-hover:scale-110 transition-transform duration-300\'>🍊</div>';">
-                        @else
-                            <div class="text-8xl group-hover:scale-110 transition-transform duration-300">🍊</div>
+                                 class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-300"
+                                 onerror="this.style.display='none'">
                         @endif
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end p-6">

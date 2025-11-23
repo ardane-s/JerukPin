@@ -315,19 +315,19 @@
                                             <div class="space-y-3 max-h-64 overflow-y-auto scrollbar-hide">
                                                 @foreach($cartItems->take(3) as $item)
                                                     <div class="flex gap-3 pb-3 border-b border-neutral-100">
-                                                        @if($item->productVariant->product->images->first())
-                                                            <img src="{{ Storage::url($item->productVariant->product->images->first()->image_path) }}" 
-                                                                 alt="{{ $item->productVariant->product->name }}" 
-                                                                 class="w-16 h-16 object-cover rounded flex-shrink-0"
-                                                                 onerror="this.onerror=null; this.src=''; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                                            <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded flex items-center justify-center text-3xl flex-shrink-0" style="display:none;">
-                                                                🍊
+                                                        <div class="w-16 h-16 bg-orange-50 rounded relative overflow-hidden flex-shrink-0">
+                                                            <!-- Placeholder -->
+                                                            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-200">
+                                                                <span class="text-3xl select-none">🍊</span>
                                                             </div>
-                                                        @else
-                                                            <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded flex items-center justify-center text-3xl flex-shrink-0">
-                                                                🍊
-                                                            </div>
-                                                        @endif
+                                                            <!-- Image -->
+                                                            @if($item->productVariant->product->images->first())
+                                                                <img src="{{ Storage::url($item->productVariant->product->images->first()->image_path) }}" 
+                                                                     alt="{{ $item->productVariant->product->name }}" 
+                                                                     class="w-full h-full object-cover relative z-10"
+                                                                     onerror="this.style.display='none'">
+                                                            @endif
+                                                        </div>
                                                         <div class="flex-1 min-w-0">
                                                             <p class="text-sm font-medium text-neutral-900 truncate">{{ $item->productVariant->product->name }}</p>
                                                             <p class="text-xs text-neutral-500">{{ $item->productVariant->variant_name }}</p>
@@ -485,19 +485,19 @@
                                         <div class="space-y-3 max-h-64 overflow-y-auto scrollbar-hide">
                                             @foreach($guestCartItems->take(3) as $item)
                                                 <div class="flex gap-3 pb-3 border-b border-neutral-100">
-                                                    @if($item->productVariant->product->images->first())
-                                                        <img src="{{ Storage::url($item->productVariant->product->images->first()->image_path) }}" 
-                                                             alt="{{ $item->productVariant->product->name }}" 
-                                                             class="w-16 h-16 object-cover rounded flex-shrink-0"
-                                                             onerror="this.onerror=null; this.src=''; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                                        <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded flex items-center justify-center text-3xl flex-shrink-0" style="display:none;">
-                                                            🍊
+                                                    <div class="w-16 h-16 bg-orange-50 rounded relative overflow-hidden flex-shrink-0">
+                                                        <!-- Placeholder -->
+                                                        <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-200">
+                                                            <span class="text-3xl select-none">🍊</span>
                                                         </div>
-                                                    @else
-                                                        <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded flex items-center justify-center text-3xl flex-shrink-0">
-                                                            🍊
-                                                        </div>
-                                                    @endif
+                                                        <!-- Image -->
+                                                        @if($item->productVariant->product->images->first())
+                                                            <img src="{{ Storage::url($item->productVariant->product->images->first()->image_path) }}" 
+                                                                 alt="{{ $item->productVariant->product->name }}" 
+                                                                 class="w-full h-full object-cover relative z-10"
+                                                                 onerror="this.style.display='none'">
+                                                        @endif
+                                                    </div>
                                                     <div class="flex-1 min-w-0">
                                                         <p class="text-sm font-medium text-neutral-900 truncate">{{ $item->productVariant->product->name }}</p>
                                                         <p class="text-xs text-neutral-500">{{ $item->productVariant->variant_name }}</p>

@@ -26,38 +26,32 @@
             <!-- Left Column - Images -->
             <div class="lg:sticky lg:top-24 lg:self-start">
                 <!-- Main Image -->
-                <div class="relative group mb-4 bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="relative group mb-4 bg-white rounded-2xl shadow-lg overflow-hidden aspect-square bg-orange-50">
+                    <!-- Placeholder -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 via-orange-50 to-orange-100">
+                        <div class="text-9xl animate-bounce select-none">🍊</div>
+                    </div>
+                    
+                    <!-- Image -->
                     @if($product->images->count() > 0)
                         @php
-                            $primaryImage = $product->images->where('is_primary', true)->first();
-                            $isPlaceholder = $primaryImage && $primaryImage->image_path === 'products/placeholder-orange.jpg';
+                            $primaryImage = $product->images->where('is_primary', true)->first() ?? $product->images->first();
                         @endphp
-                        
-                        @if($isPlaceholder)
-                            <div class="aspect-square bg-gradient-to-br from-orange-100 via-orange-50 to-orange-100 flex items-center justify-center">
-                                <div class="text-9xl animate-bounce">🍊</div>
-                            </div>
-                        @else
-                            <img src="{{ Storage::url($primaryImage->image_path) }}" 
-                                 alt="{{ $product->name }}" 
-                                 id="main-image"
-                                 class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
-                                 onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'aspect-square bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center text-9xl\'>🍊</div>';">
-                        @endif
-                    @else
-                        <div class="aspect-square bg-gradient-to-br from-orange-100 via-orange-50 to-orange-100 flex items-center justify-center">
-                            <div class="text-6xl sm:text-9xl animate-bounce">🍊</div>
-                        </div>
+                        <img src="{{ Storage::url($primaryImage->image_path) }}" 
+                             alt="{{ $product->name }}" 
+                             id="main-image"
+                             class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-105"
+                             onerror="this.style.display='none'">
                     @endif
                     
                     <!-- Wishlist Button -->
-                    <div class="absolute top-4 right-4">
+                    <div class="absolute top-4 right-4 z-20">
                         <x-wishlist-button :productId="$product->id" />
                     </div>
                     
                     <!-- Best Seller Badge -->
                     @if($product->isBestSeller())
-                        <div class="absolute top-4 left-4">
+                        <div class="absolute top-4 left-4 z-20">
                             <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 font-bold text-sm">
                                 <span>⭐</span>
                                 <span>Best Seller</span>
@@ -70,15 +64,17 @@
                 @if($product->images->count() > 1)
                     <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-3">
                         @foreach($product->images as $image)
-                            <button onclick="document.getElementById('main-image').src = '{{ Storage::url($image->image_path) }}'"
-                                    class="aspect-square rounded-lg overflow-hidden border-2 transition-all duration-300 hover:border-primary-500 hover:shadow-md {{ $image->is_primary ? 'border-primary-500 ring-2 ring-primary-200' : 'border-neutral-200' }}">
-                                @if($image->image_path !== 'products/placeholder-orange.jpg')
-                                    <img src="{{ Storage::url($image->image_path) }}" 
-                                         alt="{{ $product->name }}"
-                                         class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
-                                @else
-                                    <div class="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-3xl">🍊</div>
-                                @endif
+                            <button onclick="document.getElementById('main-image').src = '{{ Storage::url($image->image_path) }}'; document.getElementById('main-image').style.display='block';"
+                                    class="aspect-square rounded-lg overflow-hidden border-2 transition-all duration-300 hover:border-primary-500 hover:shadow-md relative bg-orange-50 {{ $image->is_primary ? 'border-primary-500 ring-2 ring-primary-200' : 'border-neutral-200' }}">
+                                <!-- Placeholder -->
+                                <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-200">
+                                    <span class="text-3xl select-none">🍊</span>
+                                </div>
+                                <!-- Image -->
+                                <img src="{{ Storage::url($image->image_path) }}" 
+                                     alt="{{ $product->name }}"
+                                     class="w-full h-full object-cover relative z-10 hover:scale-110 transition-transform duration-300"
+                                     onerror="this.style.display='none'">
                             </button>
                         @endforeach
                     </div>
