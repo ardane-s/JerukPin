@@ -137,19 +137,32 @@ Route::post('/admin/database-manager/seed', [App\Http\Controllers\Admin\Database
     ->middleware(['auth'])
     ->name('admin.database.seed');
 
-Route::get('/admin/check-and-seed', function() {
-    if (!auth()->check()) {
-        return redirect()->route('admin.login')->with('error', 'Please login first');
+Route::get('/admin/check-and-seed', function () {
+    // Allow access if logged in as admin OR if a secret key is provided
+    // The key is useful for initial deployment when no admin user exists yet
+    $isValidUser = auth()->check() && auth()->user()->role === 'admin';
+    $isValidKey = request()->query('key') === 'jerukpin_deploy_2025';
+
+    if (!$isValidUser && !$isValidKey) {
+        abort(403, 'Admin access required. If database is empty, use ?key=jerukpin_deploy_2025');
     }
-    
-    if (auth()->user()->role !== 'admin') {
-        abort(403, 'Admin access required');
+
+    try {
+        // Run the check and seed command
+        Artisan::call('db:check-and-seed', ['--force' => true]);
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Database check and seed completed successfully.',
+            'output' => Artisan::output()
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Error: ' . $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
     }
-    
-    Artisan::call('db:check-and-seed', ['--force' => true]);
-    $output = Artisan::output();
-    
-    return "<pre style='font-family: monospace; padding: 20px; background: #1e1e1e; color: #0f0;'>$output</pre>";
 })->name('admin.check-and-seed');
 
 // Customer Routes (Public)
