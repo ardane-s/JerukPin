@@ -270,6 +270,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Shipping Methods
     Route::resource('shipping-methods', App\Http\Controllers\Admin\ShippingMethodController::class);
     
+    // Notifications
+    Route::get('notifications', [App\Http\Controllers\Admin\NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('notifications/{id}/read', [App\Http\Controllers\Admin\NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('notifications/read-all', [App\Http\Controllers\Admin\NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
+    
     // Settings
     Route::get('settings/shipping', [App\Http\Controllers\Admin\SettingController::class, 'shipping'])->name('settings.shipping');
     Route::put('settings/shipping', [App\Http\Controllers\Admin\SettingController::class, 'updateShipping'])->name('settings.shipping.update');
