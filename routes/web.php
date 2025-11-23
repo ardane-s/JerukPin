@@ -137,6 +137,17 @@ Route::post('/admin/database-manager/seed', [App\Http\Controllers\Admin\Database
     ->middleware(['auth'])
     ->name('admin.database.seed');
 
+Route::get('/admin/check-and-seed', function() {
+    if (!auth()->check() || auth()->user()->role !== 'admin') {
+        abort(403);
+    }
+    
+    Artisan::call('db:check-and-seed', ['--force' => true]);
+    $output = Artisan::output();
+    
+    return "<pre style='font-family: monospace; padding: 20px; background: #1e1e1e; color: #0f0;'>$output</pre>";
+})->middleware(['auth'])->name('admin.check-and-seed');
+
 // Customer Routes (Public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

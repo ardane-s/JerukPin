@@ -124,11 +124,40 @@
                     <h2 class="page-title">@yield('page-title', 'Dashboard')</h2>
                     <p class="page-desc">@yield('page-description', 'Ringkasan performa toko JerukPin')</p>
                 </div>
-                <button class="mobile-toggle" id="mobile-toggle">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <!-- Notification Bell -->
+                    <div style="position: relative;">
+                        <button id="notif-bell" onclick="toggleNotifications()" style="position: relative; padding: 8px; background: #f3f4f6; border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s;">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <span id="notif-badge" style="display: none; position: absolute; top: 4px; right: 4px; background: #ef4444; color: white; font-size: 10px; font-weight: bold; padding: 2px 5px; border-radius: 10px; min-width: 16px; text-align: center;"></span>
+                        </button>
+                        
+                        <!-- Notification Dropdown -->
+                        <div id="notif-dropdown" style="display: none; position: absolute; right: 0; top: 48px; width: 360px; max-height: 480px; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 1000; overflow: hidden;">
+                            <div style="padding: 16px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center;">
+                                <h3 style="margin: 0; font-size: 16px; font-weight: 600;">Notifications</h3>
+                                <button onclick="markAllAsRead()" style="background: none; border: none; color: #3b82f6; font-size: 13px; cursor: pointer; font-weight: 500;">Mark all read</button>
+                            </div>
+                            <div id="notif-list" style="max-height: 400px; overflow-y: auto;">
+                                <div style="padding: 40px 20px; text-align: center; color: #9ca3af;">
+                                    <svg style="width: 48px; height: 48px; margin: 0 auto 12px; opacity: 0.5;" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
+                                    </svg>
+                                    <p style="margin: 0; font-size: 14px;">No notifications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="mobile-toggle" id="mobile-toggle">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </header>
 
             <!-- Flash Messages -->
@@ -188,6 +217,109 @@
                 }
             });
         });
+    </script>
+    
+    <!-- Notification System JavaScript -->
+    <script>
+    let notifDropdownOpen = false;
+    
+    function toggleNotifications() {
+        const dropdown = document.getElementById('notif-dropdown');
+        notifDropdownOpen = !notifDropdownOpen;
+        dropdown.style.display = notifDropdownOpen ? 'block' : 'none';
+        
+        if (notifDropdownOpen) {
+            fetchNotifications();
+        }
+    }
+    
+    async function fetchNotifications() {
+        try {
+            const response = await fetch('/admin/notifications');
+            const data = await response.json();
+            
+            const badge = document.getElementById('notif-badge');
+            const list = document.getElementById('notif-list');
+            
+            // Update badge
+            if (data.count > 0) {
+                badge.textContent = data.count > 9 ? '9+' : data.count;
+                badge.style.display = 'block';
+            } else {
+                badge.style.display = 'none';
+            }
+            
+            // Update list
+            if (data.notifications.length === 0) {
+                list.innerHTML = `
+                    <div style="padding: 40px 20px; text-align: center; color: #9ca3af;">
+                        <svg style="width: 48px; height: 48px; margin: 0 auto 12px; opacity: 0.5;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
+                        </svg>
+                        <p style="margin: 0; font-size: 14px;">No notifications</p>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = data.notifications.map(notif => `
+                    <div onclick="markAsRead(${notif.id})" style="padding: 16px; border-bottom: 1px solid #f3f4f6; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='white'">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 4px;">
+                            <strong style="font-size: 14px; color: #111827;">${notif.title}</strong>
+                            <span style="font-size: 11px; color: #9ca3af;">${timeAgo(notif.created_at)}</span>
+                        </div>
+                        <p style="margin: 0; font-size: 13px; color: #6b7280;">${notif.message}</p>
+                    </div>
+                `).join('');
+            }
+        } catch (error) {
+            console.error('Error fetching notifications:', error);
+        }
+    }
+    
+    async function markAsRead(id) {
+        try {
+            await fetch(`/admin/notifications/${id}/read`, { method: 'POST', headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' } });
+            fetchNotifications();
+        } catch (error) {
+            console.error('Error marking as read:', error);
+        }
+    }
+    
+    async function markAllAsRead() {
+        try {
+            await fetch('/admin/notifications/read-all', { method: 'POST', headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' } });
+            fetchNotifications();
+            showToast('All notifications marked as read', 'success');
+        } catch (error) {
+            console.error('Error marking all as read:', error);
+        }
+    }
+    
+    function timeAgo(dateString) {
+        const seconds = Math.floor((new Date() - new Date(dateString)) / 1000);
+        if (seconds < 60) return 'just now';
+        const minutes = Math.floor(seconds / 60);
+        if (minutes < 60) return `${minutes}m ago`;
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return `${hours}h ago`;
+        const days = Math.floor(hours / 24);
+        return `${days}d ago`;
+    }
+    
+    // Auto-refresh notifications every 30 seconds
+    setInterval(fetchNotifications, 30000);
+    
+    // Initial fetch on page load
+    document.addEventListener('DOMContentLoaded', fetchNotifications);
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        const bell = document.getElementById('notif-bell');
+        const dropdown = document.getElementById('notif-dropdown');
+        if (notifDropdownOpen && !bell.contains(e.target) && !dropdown.contains(e.target)) {
+            notifDropdownOpen = false;
+            dropdown.style.display = 'none';
+        }
+    });
     </script>
     
     <!-- Toast Notifications -->
