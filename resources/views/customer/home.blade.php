@@ -338,10 +338,15 @@
                         </div>
                         <!-- Image -->
                         @if($category->image)
-                            <img src="{{ Storage::url($category->image) }}" 
-                                 alt="{{ $category->name }}" 
-                                 class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-300"
-                                 onerror="this.style.display='none'">
+                            @php
+                                $imageUrl = \App\Helpers\ImageHelper::getImageUrl($category->image);
+                            @endphp
+                            @if($imageUrl)
+                                <img src="{{ $imageUrl }}" 
+                                     alt="{{ $category->name }}" 
+                                     class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-300"
+                                     onerror="this.style.display='none'">
+                            @endif
                         @endif
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end p-6">

@@ -33,10 +33,15 @@
                         <div class="w-12 h-12 rounded bg-orange-100 flex items-center justify-center relative overflow-hidden">
                             <span class="text-2xl absolute select-none">🍊</span>
                             @if($category->image)
-                                <img src="{{ Storage::url($category->image) }}" 
-                                     alt="{{ $category->name }}" 
-                                     class="w-full h-full object-cover relative z-10"
-                                     onerror="this.style.display='none'">
+                                @php
+                                    $imageUrl = \App\Helpers\ImageHelper::getImageUrl($category->image);
+                                @endphp
+                                @if($imageUrl)
+                                    <img src="{{ $imageUrl }}" 
+                                         alt="{{ $category->name }}" 
+                                         class="w-full h-full object-cover relative z-10"
+                                         onerror="this.style.display='none'">
+                                @endif
                             @endif
                         </div>
                     </td>
