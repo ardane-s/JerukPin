@@ -31,8 +31,6 @@ class CheckAndSeedProduction extends Command
         }
         
         try {
-            DB::beginTransaction();
-            
             // Disable foreign key checks
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             
@@ -132,8 +130,6 @@ class CheckAndSeedProduction extends Command
                 $this->info("✓ Shipping methods exist ({$shippingMethodCount} methods)");
             }
             
-            DB::commit();
-            
             // Summary
             $this->newLine();
             $this->info('✅ Railway database ready!');
@@ -155,7 +151,6 @@ class CheckAndSeedProduction extends Command
             return 0;
             
         } catch (\Exception $e) {
-            DB::rollBack();
             $this->error('❌ Error: ' . $e->getMessage());
             return 1;
         }

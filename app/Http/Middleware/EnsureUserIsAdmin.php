@@ -18,8 +18,8 @@ class EnsureUserIsAdmin
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
-        // Check if user has super_admin role
-        if (auth()->user()->role !== 'super_admin') {
+        // Check if user has admin or super_admin role
+        if (!in_array(auth()->user()->role, ['admin', 'super_admin'])) {
             abort(403, 'Unauthorized. Admin access only.');
         }
 
