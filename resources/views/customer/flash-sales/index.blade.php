@@ -72,22 +72,6 @@
                             </div>
                         </div>
                     </div>
-                            $image = $product->images->first();
-                        @endphp
-                        
-                        <div class="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-neutral-200" style="width: 250px; flex-shrink: 0;">
-                            <!-- Product Image -->
-                            <div class="relative overflow-hidden aspect-square" id="product-card-{{ $sale->id }}">
-                                @if($image && $image->image_path !== 'products/placeholder-orange.jpg')
-                                    <img src="{{ Storage::url($image->image_path) }}" 
-                                         alt="{{ $product->name }}" 
-                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                         onerror="this.style.display='none'; document.getElementById('placeholder-{{ $sale->id }}').style.display='flex';">
-                                    <!-- Orange Placeholder (hidden by default, shown on error) -->
-                                    <div id="placeholder-{{ $sale->id }}" class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center text-8xl" style="display: none;">🍊</div>
-                                @else
-                                    <!-- Orange Placeholder -->
-                                    <div class="w-full h-full bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 flex items-center justify-center text-8xl">🍊</div>
                                 @endif
                                 
                                 <!-- Discount Badge -->
