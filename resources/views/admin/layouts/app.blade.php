@@ -189,5 +189,8 @@
             });
         });
     </script>
+    
+    <!-- Toast Notifications -->
+    @include('components.toast')
 </body>
 </html>
