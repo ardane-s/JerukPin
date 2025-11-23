@@ -42,6 +42,34 @@
                 <th class="px-6 py-3.5 text-left text-xs font-semibold text-neutral-700 uppercase tracking-wider">Tanggal</th>
                 <th class="px-6 py-3.5 text-right text-xs font-semibold text-neutral-700 uppercase tracking-wider">Aksi</th>
             </tr>
+        </thead>
+        <tbody>
+            @forelse($reviews as $review)
+            <tr class="border-b border-neutral-100 hover:bg-neutral-50">
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        @if($review->product && $review->product->images->count() > 0)
+                            <img src="{{ asset('storage/' . $review->product->images->first()->image_path) }}" 
+                                 alt="{{ $review->product->name }}" 
+                                 class="w-12 h-12 rounded object-cover">
+                        @else
+                            <div class="w-12 h-12 rounded bg-neutral-100 flex items-center justify-center">
+                                <span class="text-neutral-400 text-xs">No img</span>
+                            </div>
+                        @endif
+                        <div>
+                            <p class="font-medium text-neutral-900">{{ $review->product->name ?? 'Produk dihapus' }}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <div>
+                        <p class="font-medium text-neutral-900">{{ $review->user->name }}</p>
+                        <p class="text-sm text-neutral-500">{{ $review->user->email }}</p>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
                         <div class="flex gap-0.5">
                             @for($i = 1; $i <= 5; $i++)
                                 <svg class="w-4 h-4 {{ $i <= $review->rating ? 'text-yellow-400' : 'text-neutral-300' }}" fill="currentColor" viewBox="0 0 20 20">
