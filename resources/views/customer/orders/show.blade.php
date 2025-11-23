@@ -351,6 +351,19 @@
                             <span>Subtotal</span>
                             <span class="font-medium">Rp {{ number_format($order->subtotal, 0, ',', '.') }}</span>
                         </div>
+                        
+                        @if($order->shippingMethod)
+                            <div class="bg-gradient-to-r from-blue-50 to-white p-3 rounded-lg border border-blue-100">
+                                <p class="text-xs text-neutral-600 mb-1">Metode Pengiriman</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-lg">{{ $order->shippingMethod->icon }}</span>
+                                    <div>
+                                        <p class="font-bold text-neutral-900 text-sm">{{ $order->shippingMethod->name }}</p>
+                                        <p class="text-xs text-neutral-500">{{ $order->shippingMethod->estimate_text }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                     <!-- Payment Method -->
