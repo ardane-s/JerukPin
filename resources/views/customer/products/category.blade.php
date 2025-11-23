@@ -14,8 +14,15 @@
     <!-- Content -->
     <div class="relative max-w-7xl mx-auto px-4 text-center">
         <!-- Category Icon/Badge -->
-        <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-xl mb-6 transform hover:scale-110 transition-transform duration-300">
-            <span class="text-4xl">{{ $category->icon ?? '🍊' }}</span>
+        <!-- Category Icon/Badge -->
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-xl mb-6 transform hover:scale-110 transition-transform duration-300 overflow-hidden">
+            @if($category->image)
+                <img src="{{ asset('storage/' . $category->image) }}" 
+                     alt="{{ $category->name }}" 
+                     class="w-full h-full object-cover">
+            @else
+                <span class="text-4xl">🍊</span>
+            @endif
         </div>
         
         <!-- Category Name -->
