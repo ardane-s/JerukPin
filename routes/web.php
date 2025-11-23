@@ -149,13 +149,14 @@ Route::get('/admin/check-and-seed', function () {
 
     try {
         // Run the check and seed command
-        Artisan::call('db:check-and-seed', ['--force' => true]);
-        
-        return response()->json([
-            'success' => true,
-            'message' => 'Database check and seed completed successfully.',
-            'output' => Artisan::output()
-        ]);
+        // Run migrations first to ensure schema is up to date
+    Artisan::call('migrate', ['--force' => true]);
+    $output = "Migration Output:\n" . Artisan::output() . "\n\n";
+    
+    Artisan::call('db:check-and-seed', ['--force' => true]);
+    $output .= "Seed Output:\n" . Artisan::output();
+    
+    return "<pre style='font-family: monospace; padding: 20px; background: #1e1e1e; color: #0f0;'>$output</pre>";
     } catch (\Exception $e) {
         return response()->json([
             'success' => false,
