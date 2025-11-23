@@ -114,6 +114,7 @@ class OrderController extends Controller
             'payment_amount' => $request->payment_amount,
             'bank_name' => $request->bank_name,
             'account_name' => $request->account_name,
+            'uploaded_at' => now(),
         ]);
         
         // Update order status

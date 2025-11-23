@@ -9,6 +9,10 @@ class PaymentProof extends Model
     protected $fillable = [
         'payment_id',
         'proof_image_path',
+        'payment_date',
+        'payment_amount',
+        'bank_name',
+        'account_name',
         'notes',
         'uploaded_at',
         'verified_by',
