@@ -350,6 +350,14 @@
                         <div class="flex justify-between text-neutral-700">
                             <span>Subtotal</span>
                             <span class="font-medium">Rp {{ number_format($order->subtotal, 0, ',', '.') }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    @if($order->payment_method)
+                        <div class="bg-gradient-to-r from-orange-50 to-white p-4 rounded-xl border border-orange-100 mt-4">
+                            <p class="text-sm text-neutral-600 mb-1">Metode Pembayaran</p>
+                            <p class="font-bold text-neutral-900">
                                 @if($order->payment_method == 'bank_transfer')
                                     🏦 Transfer Bank
                                 @elseif($order->payment_method == 'e_wallet')
