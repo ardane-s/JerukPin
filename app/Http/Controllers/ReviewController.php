@@ -17,6 +17,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'order_item_id' => 'required|exists:order_items,id',
             'product_id' => 'required|exists:products,id',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|max:1000',
@@ -27,8 +28,8 @@ class ReviewController extends Controller
             return back()->with('error', 'Anda harus login terlebih dahulu untuk memberikan ulasan.');
         }
 
-        // Check if already reviewed this product
-        $existingReview = Review::where('product_id', $request->product_id)
+        // Check if already reviewed this order item
+        $existingReview = Review::where('order_item_id', $request->order_item_id)
             ->where('user_id', Auth::id())
             ->first();
 
@@ -39,6 +40,7 @@ class ReviewController extends Controller
         // Create review
         Review::create([
             'user_id' => Auth::id(),
+            'order_item_id' => $request->order_item_id,
             'product_id' => $request->product_id,
             'rating' => $request->rating,
             'comment' => $request->comment,
