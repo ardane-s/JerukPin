@@ -19,6 +19,8 @@ class Order extends Model
         'address_id',
         'subtotal',
         'shipping_cost',
+        'shipping_method_id',
+        'shipping_tracking_number',
         'total',
         'status',
         'payment_method',
@@ -50,6 +52,11 @@ class Order extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+    
+    public function shippingMethod()
+    {
+        return $this->belongsTo(ShippingMethod::class);
     }
     
     // Accessors

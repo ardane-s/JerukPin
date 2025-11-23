@@ -266,6 +266,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('payment-methods', App\Http\Controllers\Admin\PaymentMethodController::class);
     Route::post('payment-methods/{paymentMethod}/toggle', [App\Http\Controllers\Admin\PaymentMethodController::class, 'toggleActive'])->name('payment-methods.toggle');
     
+    // Shipping Methods
+    Route::resource('shipping-methods', App\Http\Controllers\Admin\ShippingMethodController::class);
+    
     // Settings
     Route::get('settings/shipping', [App\Http\Controllers\Admin\SettingController::class, 'shipping'])->name('settings.shipping');
     Route::put('settings/shipping', [App\Http\Controllers\Admin\SettingController::class, 'updateShipping'])->name('settings.shipping.update');
