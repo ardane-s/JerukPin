@@ -194,6 +194,21 @@ Route::get('/admin/check-and-seed', function () {
     }
 })->name('admin.check-and-seed');
 
+Route::get('/debug-user', function() {
+    if (!auth()->check()) {
+        return 'Not logged in';
+    }
+    $user = auth()->user();
+    return [
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'role' => $user->role,
+        'role_type' => gettype($user->role),
+        'is_admin_check' => in_array($user->role, ['admin', 'super_admin']),
+    ];
+});
+
 // Customer Routes (Public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
