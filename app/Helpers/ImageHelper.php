@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Storage;
 class ImageHelper
 {
     /**
-     * Get image URL safely, returning null if the image doesn't exist
+     * Get image URL safely, returning null if path is empty
+     * Browser will handle 404s via img onerror handler
      * 
      * @param string|null $path
      * @return string|null
@@ -18,11 +19,8 @@ class ImageHelper
             return null;
         }
 
-        try {
-            return Storage::url($path);
-        } catch (\Throwable $e) {
-            // Image doesn't exist on storage, return null
-            return null;
-        }
+        // Just return the URL directly - let the browser handle 404s
+        // This avoids slow exception handling or API calls
+        return Storage::url($path);
     }
 }
