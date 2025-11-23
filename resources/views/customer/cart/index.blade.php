@@ -42,10 +42,15 @@
                                 </div>
                                 <!-- Image -->
                                 @if($item->productVariant->product->images->first())
-                                    <img src="{{ Storage::url($item->productVariant->product->images->first()->image_path) }}" 
-                                         alt="{{ $item->productVariant->product->name }}" 
-                                         class="w-full h-full object-cover relative z-10"
-                                         onerror="this.style.display='none'">
+                                    @php
+                                        $imageUrl = \App\Helpers\ImageHelper::getImageUrl($item->productVariant->product->images->first()->image_path);
+                                    @endphp
+                                    @if($imageUrl)
+                                        <img src="{{ $imageUrl }}" 
+                                             alt="{{ $item->productVariant->product->name }}" 
+                                             class="w-full h-full object-cover relative z-10"
+                                             onerror="this.style.display='none'">
+                                    @endif
                                 @endif
                             </div>
                             

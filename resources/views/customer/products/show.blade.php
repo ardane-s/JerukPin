@@ -35,13 +35,16 @@
                     <!-- Image -->
                     @if($product->images->count() > 0)
                         @php
-                            $primaryImage = $product->images->where('is_primary', true)->first() ?? $product->images->first();
+                                $primaryImage = $product->images->where('is_primary', true)->first() ?? $product->images->first();
+                                $imageUrl = \App\Helpers\ImageHelper::getImageUrl($primaryImage->image_path);
                         @endphp
-                        <img src="{{ Storage::url($primaryImage->image_path) }}" 
-                             alt="{{ $product->name }}" 
-                             id="main-image"
-                             class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-105"
-                             onerror="this.style.display='none'">
+                        @if($imageUrl)
+                            <img src="{{ $imageUrl }}" 
+                                 alt="{{ $product->name }}" 
+                                 id="main-image"
+                                 class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-105"
+                                 onerror="this.style.display='none'">
+                        @endif
                     @endif
                     
                     <!-- Wishlist Button -->
@@ -64,18 +67,23 @@
                 @if($product->images->count() > 1)
                     <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-3">
                         @foreach($product->images as $image)
-                            <button onclick="document.getElementById('main-image').src = '{{ Storage::url($image->image_path) }}'; document.getElementById('main-image').style.display='block';"
-                                    class="aspect-square rounded-lg overflow-hidden border-2 transition-all duration-300 hover:border-primary-500 hover:shadow-md relative bg-orange-50 {{ $image->is_primary ? 'border-primary-500 ring-2 ring-primary-200' : 'border-neutral-200' }}">
-                                <!-- Placeholder -->
-                                <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-200">
-                                    <span class="text-3xl select-none">🍊</span>
-                                </div>
-                                <!-- Image -->
-                                <img src="{{ Storage::url($image->image_path) }}" 
-                                     alt="{{ $product->name }}"
-                                     class="w-full h-full object-cover relative z-10 hover:scale-110 transition-transform duration-300"
-                                     onerror="this.style.display='none'">
-                            </button>
+                            @php
+                                $thumbUrl = \App\Helpers\ImageHelper::getImageUrl($image->image_path);
+                            @endphp
+                            @if($thumbUrl)
+                                <button onclick="document.getElementById('main-image').src = '{{ $thumbUrl }}'; document.getElementById('main-image').style.display='block';"
+                                        class="aspect-square rounded-lg overflow-hidden border-2 transition-all duration-300 hover:border-primary-500 hover:shadow-md relative bg-orange-50 {{ $image->is_primary ? 'border-primary-500 ring-2 ring-primary-200' : 'border-neutral-200' }}">
+                                    <!-- Placeholder -->
+                                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-200">
+                                        <span class="text-3xl select-none">🍊</span>
+                                    </div>
+                                    <!-- Image -->
+                                    <img src="{{ $thumbUrl }}" 
+                                         alt="{{ $product->name }}"
+                                         class="w-full h-full object-cover relative z-10 hover:scale-110 transition-transform duration-300"
+                                         onerror="this.style.display='none'">
+                                </button>
+                            @endif
                         @endforeach
                     </div>
                 @endif

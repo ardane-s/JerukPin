@@ -11,10 +11,15 @@
             
             <!-- Product Image (Overlay) -->
             @if($product->images->first())
-                <img src="{{ Storage::url($product->images->first()->image_path) }}" 
-                     alt="{{ $product->name }}" 
-                     class="w-full h-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-500"
-                     onerror="this.style.display='none'">
+                @php
+                    $imageUrl = \App\Helpers\ImageHelper::getImageUrl($product->images->first()->image_path);
+                @endphp
+                @if($imageUrl)
+                    <img src="{{ $imageUrl }}" 
+                         alt="{{ $product->name }}" 
+                         class="w-full h-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-500"
+                         onerror="this.style.display='none'">
+                @endif
             @endif
             
             <!-- Gradient Overlay on Hover -->

@@ -156,10 +156,15 @@
                                     </div>
                                     <!-- Image -->
                                     @if($sale->productVariant->product->images->first())
-                                        <img src="{{ Storage::url($sale->productVariant->product->images->first()->image_path) }}" 
-                                             alt="{{ $sale->productVariant->product->name }}"
-                                             class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-500"
-                                             onerror="this.style.display='none'">
+                                        @php
+                                            $imageUrl = \App\Helpers\ImageHelper::getImageUrl($sale->productVariant->product->images->first()->image_path);
+                                        @endphp
+                                        @if($imageUrl)
+                                            <img src="{{ $imageUrl }}" 
+                                                 alt="{{ $sale->productVariant->product->name }}"
+                                                 class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-500"
+                                                 onerror="this.style.display='none'">
+                                        @endif
                                     @endif
                                 </div>
                             
@@ -209,10 +214,15 @@
                                 </div>
                                 <!-- Image -->
                                 @if($sale->productVariant->product->images->first())
-                                    <img src="{{ Storage::url($sale->productVariant->product->images->first()->image_path) }}" 
-                                         alt="{{ $sale->productVariant->product->name }}"
-                                         class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-500"
-                                         onerror="this.style.display='none'">
+                                    @php
+                                        $imageUrl = \App\Helpers\ImageHelper::getImageUrl($sale->productVariant->product->images->first()->image_path);
+                                    @endphp
+                                    @if($imageUrl)
+                                        <img src="{{ $imageUrl }}" 
+                                             alt="{{ $sale->productVariant->product->name }}"
+                                             class="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-500"
+                                             onerror="this.style.display='none'">
+                                    @endif
                                 @endif
                             </div>
                         
