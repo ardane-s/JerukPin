@@ -350,24 +350,6 @@
                         <div class="flex justify-between text-neutral-700">
                             <span>Subtotal</span>
                             <span class="font-medium">Rp {{ number_format($order->subtotal, 0, ',', '.') }}</span>
-                        </div>
-                        <div class="flex justify-between text-neutral-700">
-                            <span>Ongkos Kirim</span>
-                            <span class="font-medium">Rp {{ number_format($order->shipping_cost, 0, ',', '.') }}</span>
-                        </div>
-                        <div class="border-t-2 border-dashed border-neutral-200 pt-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-lg font-bold text-neutral-900">Total</span>
-                                <span class="text-2xl font-bold text-orange-600">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Payment Method -->
-                    @if($order->payment_method)
-                        <div class="bg-gradient-to-r from-orange-50 to-white p-4 rounded-xl border border-orange-100 mt-4">
-                            <p class="text-sm text-neutral-600 mb-1">Metode Pembayaran</p>
-                            <p class="font-bold text-neutral-900">
                                 @if($order->payment_method == 'bank_transfer')
                                     🏦 Transfer Bank
                                 @elseif($order->payment_method == 'e_wallet')
