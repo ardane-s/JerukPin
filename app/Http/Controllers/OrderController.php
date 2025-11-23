@@ -149,4 +149,24 @@ class OrderController extends Controller
         return redirect()->route('orders.index')
             ->with('success', '✅ Pesanan berhasil dibatalkan.');
     }
+    
+    public function completeOrder($orderNumber)
+    {
+        $order = Order::where('order_number', $orderNumber)->firstOrFail();
+        
+        // Authorization check - only order owner can complete
+        if ($order->user_id && (!auth()->check() || auth()->id() != $order->user_id)) {
+            abort(403, 'Unauthorized');
+        }
+        
+        // Only allow completion if order is shipped
+        if ($order->status !== 'shipped') {
+            return back()->with('error', 'Pesanan hanya bisa diselesaikan jika sudah dikirim.');
+        }
+        
+        // Update status to delivered
+        $order->update(['status' => 'delivered']);
+        
+        return back()->with('success', 'Terima kasih! Pesanan telah diselesaikan.');
+    }
 }

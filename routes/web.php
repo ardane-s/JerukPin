@@ -181,6 +181,7 @@ Route::get('/orders/{orderNumber}/invoice', [InvoiceController::class, 'show'])-
 Route::get('/orders/{orderNumber}/payment', [OrderController::class, 'uploadPayment'])->name('orders.payment');
 Route::post('/orders/{orderNumber}/payment', [OrderController::class, 'storePayment'])->name('orders.payment.store');
 Route::post('/orders/{orderNumber}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+Route::post('/orders/{orderNumber}/complete', [OrderController::class, 'completeOrder'])->name('orders.complete');
 
 
 Route::middleware('auth')->group(function () {

@@ -243,11 +243,27 @@
                         </button>
                     </div>
                 </div>
+            @elseif($order->status == 'shipped')
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-t-4 border-blue-400 px-6 py-5">
+                    <div class="flex items-start gap-4">
+                        <div class="text-4xl">🚚</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-blue-900 text-lg mb-2">Pesanan Sedang Dikirim</h3>
+                            <p class="text-sm text-blue-800 mb-4">Paket Anda sedang dalam perjalanan. Silakan konfirmasi jika sudah diterima.</p>
+                            
+                            <form action="{{ route('orders.complete', $order->order_number) }}" method="POST" onsubmit="return confirm('Apakah Anda sudah menerima pesanan ini?')">
+                                @csrf
+                                <button type="submit" class="w-full sm:w-auto bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-3 rounded-lg font-bold shadow-md hover:shadow-lg transition-all transform active:scale-95">
+                                    ✅ Terima Pesanan
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             @endif
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Left Column: Products & Shipping -->
             <div class="lg:col-span-2 space-y-6">
                 <!-- Order Items -->
                 <div class="bg-white rounded-2xl shadow-lg border-2 border-orange-100 p-6">
